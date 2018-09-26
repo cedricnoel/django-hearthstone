@@ -1,0 +1,9 @@
+{% if latest_cards %}
+    <ul>
+	    {% for card in latest_cards %}
+	        <li><a href="/polls/{{ card.id }}/">{{ card.name }}</a></li>
+	    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cards are available.</p>
+{% endif %}
