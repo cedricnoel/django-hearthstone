@@ -1,21 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.views import generic
 
 from .models import Card
 
-def index(request):
-    try:
-        latest_cards = Card.objects.order_by('-pub_date')[:5]
-    except:
-        raise Http404("Question does not exist")
+class IndexView(generic.ListView):
+    template_name = 'cards/index.html'
+    context_object_name = 'latest_cards'
 
-    context = {'latest_cards': latest_cards}
+    def get_queryset(self):
+        return Card.objects.order_by('-pub_date')[:5]
 
-    return render(request, 'cards/index.html', context)
-
-
-def detail(request, card_id):
-    card = get_object_or_404(Card, pk=card_id)
-    context = {'card': card}
-
-    return render(request, 'cards/detail.html', context)
+class DetailView(generic.DetailView):
+    model = Card
+    template_name = 'cards/detail.html'
