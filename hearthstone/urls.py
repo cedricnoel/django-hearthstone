@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from cards import views as cardViews
 
 urlpatterns = [
-	path('', views.index, name='index'),
+	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
     path('admin/', admin.site.urls),
 ]
