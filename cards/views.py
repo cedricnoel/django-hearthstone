@@ -1,15 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
 
 from .models import Card
 
-# Create your views here.
+class IndexView(generic.ListView):
+    template_name = 'cards/index.html'
+    context_object_name = 'latest_cards'
 
-def index(request):
-    latest_cards = Card.objects.order_by('-pub_date')[:5]
-    context = {'latest_cards': latest_cards}
+    def get_queryset(self):
+        return Card.objects.order_by('-pub_date')[:5]
 
-    return render(request, 'cards/index.html', context)
-
-def detail(request, question_id):
-    return HttpResponse("You're looking at card %s." % question_id)
+class DetailView(generic.DetailView):
+    model = Card
+    template_name = 'cards/detail.html'

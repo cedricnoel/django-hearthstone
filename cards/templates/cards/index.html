@@ -1,7 +1,7 @@
 {% if latest_cards %}
     <ul>
 	    {% for card in latest_cards %}
-	        <li><a href="/polls/{{ card.id }}/">{{ card.name }}</a></li>
+	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.name }}</a></li>
 	    {% endfor %}
     </ul>
 {% else %}
