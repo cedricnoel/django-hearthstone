@@ -5,5 +5,8 @@ from .models import Type, Card
 class CardAdmin(admin.ModelAdmin):
     list_display = ('name', 'pub_date')
 
-admin.site.register(Type)
+class TypeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'pub_date')
+
+admin.site.register(Type, TypeAdmin)
 admin.site.register(Card, CardAdmin)
