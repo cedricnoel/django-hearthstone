@@ -1,8 +1,8 @@
 from django.db import models
 
 class Type(models.Model):
-	name = models.CharField(max_length=200)
-	pub_date = models.DateTimeField('date published')
+    name = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
 
 class Card(models.Model):
     name = models.CharField(max_length=200)
@@ -10,4 +10,5 @@ class Card(models.Model):
     atk = models.IntegerField(default=1)
     cost = models.IntegerField(default=0)
     descr = models.TextField()
+    type = models.ManyToManyField(Type)
     pub_date = models.DateTimeField('date published')
