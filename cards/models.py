@@ -11,5 +11,5 @@ class Card(models.Model):
     cost = models.IntegerField(default=0)
     descr = models.TextField()
     type = models.ManyToManyField(Type)
-    image = models.ImageField(upload_to = 'assets/img/', default = 'assets/img/no-img.jpg')
+    image = models.ImageField(upload_to = 'cards/static/img/', default = 'cards/static/img/no-img.jpg')
     pub_date = models.DateTimeField('date published')
