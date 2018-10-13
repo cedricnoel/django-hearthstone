@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
 
 # Create your views here.
@@ -10,9 +10,6 @@ from django.contrib.auth import login as auth_login
 # -------- GET TEMPLATE --------
 def login(request):
     return render(request,'user/login.html')
-
-def logout(request):
-    return
 
 def register(request):
     return render(request, 'user/register.html')
@@ -27,7 +24,6 @@ def loginAction(request):
         auth_login(request, user)
         #Maybe change it later for dashboard
         return redirect("cards:index")
-        ...
     else:
          return render(request, 'user/login.html', {
             'error_message': "Bad credentials.",
@@ -39,4 +35,9 @@ def registerAction(request):
     password = request.POST['password']
     user = User.objects.create_user(username, email, password)
     user.save()
+    return redirect("user:login")
+
+def logoutAction(request):
+    logout(request)
+    # Change later for homepage
     return redirect("user:login")

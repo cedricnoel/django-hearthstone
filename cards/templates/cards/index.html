@@ -1,3 +1,9 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. <a href="{% url 'user:logoutAction' %}">Logout</a></p>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
 {% if latest_cards %}
     <ul>
 	    {% for card in latest_cards %}
