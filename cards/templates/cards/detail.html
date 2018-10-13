@@ -1,6 +1,11 @@
+{% load static %}
+{% static "" as baseUrl %}
+
 <h1>{{ card.name }}</h1>
 <p>Life : {{ card.life }}</p>
 <p>ATK : {{ card.atk }}</p>
 <p>Cost : {{ card.cost }}</p>
 <p>Descr :</p>
 <p>{{ card.descr }}</p>
+
+<img src="{{card.image.url}}" alt="">
