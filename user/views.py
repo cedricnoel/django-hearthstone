@@ -9,25 +9,36 @@ from django.contrib.auth import login as auth_login
 
 # -------- GET TEMPLATE --------
 def login(request):
-    return render(request,'user/login.html')
+    if request.user.is_authenticated:
+        # Change later for homepage
+        return redirect("cards:index")
+    else:    
+        return render(request,'user/login.html')
 
 def register(request):
     return render(request, 'user/register.html')
 
+def profile(request):
+    return render(request, "user/profile.html")
+
 # -------- POST ACTION --------
 
 def loginAction(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        auth_login(request, user)
-        #Maybe change it later for dashboard
-        return redirect("cards:index")
-    else:
-         return render(request, 'user/login.html', {
-            'error_message': "Bad credentials.",
-        })
+    if request.user.is_authenticated:
+        # Change later for homepage
+        return redirect("user:login")
+    else:    
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            #Maybe change it later for dashboard
+            return redirect("cards:index")
+        else:
+            return render(request, 'user/login.html', {
+                'error_message': "Bad credentials.",
+            })
 
 def registerAction(request):
     username = request.POST['username']

@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+    <p>
+        <label>Username : </label>
+        {{ user.username }}
+    </p>
+    <p>
+        <label>email : </label>
+        {{ user.email }}
+    </p>
+    <a href="">Edit profile</a>
+{% endif %}
