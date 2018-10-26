@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -18,6 +19,8 @@ def login(request):
 def register(request):
     return render(request, 'user/register.html')
 
+
+@login_required
 def profile(request):
     return render(request, "user/profile.html")
 
