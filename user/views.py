@@ -24,6 +24,10 @@ def register(request):
 def profile(request):
     return render(request, "user/profile.html")
 
+@login_required
+def profile_edit(request):
+    return render(request, "user/profile_edit.html")
+
 # -------- POST ACTION --------
 
 def loginAction(request):
@@ -55,3 +59,11 @@ def logoutAction(request):
     logout(request)
     # Change later for homepage
     return redirect("user:login")
+
+def profile_edit_action(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user.username = request.POST['username']
+        user.email = request.POST['email']
+        user.save()
+        return redirect("User:profile")
