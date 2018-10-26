@@ -4,6 +4,9 @@ class Type(models.Model):
     name = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
+    def __str__(self):
+        return self.name
+
 class Card(models.Model):
     name = models.CharField(max_length=200)
     life = models.IntegerField(default=1)
@@ -13,3 +16,6 @@ class Card(models.Model):
     type = models.ManyToManyField(Type)
     image = models.ImageField(upload_to = 'cards/static/img/', default = 'cards/static/img/no-img.jpg')
     pub_date = models.DateTimeField('date published')
+
+    def __str__(self):
+        return self.name
