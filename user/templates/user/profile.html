@@ -7,5 +7,5 @@
         <label>email : </label>
         {{ user.email }}
     </p>
-    <a href="">Edit profile</a>
+    <a href="{% url 'user:profile_edit' %}">Edit profile</a>
 {% endif %}

@@ -10,6 +10,8 @@ urlpatterns = [
         path('registerAction/', views.registerAction, name="registerAction"),
         path('loginAction/', views.loginAction, name='loginAction'),
         path('logout/', views.logoutAction, name="logoutAction"),
-        path('profile/', views.profile, name="profile")
+        path('profile/', views.profile, name="profile"),
+        path('profile/edit', views.profile_edit, name="profile_edit"),
+        path('profile/editAction', views.profile_edit_action, name="profile_edit_action")
     ])),
 ]

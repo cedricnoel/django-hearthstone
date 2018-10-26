@@ -1,0 +1,15 @@
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'user:profile_edit_action' %}">
+        {% csrf_token %}
+    <p>
+        <label>Username : </label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </p>
+    <p>
+        <label>email : </label>
+        <input type="email" name="email" id="email" value="{{ user.email }}" required>
+        
+    </p>
+    <input type="submit" value="Save edit">
+</form>
+{% endif %}
