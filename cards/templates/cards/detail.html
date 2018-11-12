@@ -5,7 +5,13 @@
 <p>Life : {{ card.life }}</p>
 <p>ATK : {{ card.atk }}</p>
 <p>Cost : {{ card.cost }}</p>
-<p>Descr :</p>
+<p>Types :</p>
+<ul>
+    {% for type in card.type.all %}
+        <li>{{ type }}</li>
+    {% endfor %}
+</ul>
+<p>Description :</p>
 <p>{{ card.descr }}</p>
 
 <img src="{{card.image.url}}" alt="">
