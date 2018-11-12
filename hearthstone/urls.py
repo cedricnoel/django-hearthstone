@@ -23,5 +23,6 @@ urlpatterns = [
 	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
     path('admin/', admin.site.urls),
+    path('packet/', include('packet.urls')),
     path('', include('user.urls', namespace="User"))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
