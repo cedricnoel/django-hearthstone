@@ -24,4 +24,4 @@ def create_user(sender, instance, created, **kwargs):
 def save_user(sender, instance, **kwargs):
     instance.profile.save()
 
-    
+
