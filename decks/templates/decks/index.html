@@ -1,0 +1,6 @@
+<h1>Mes decks</h1>
+<ul>
+    {% for deck in decks %}
+        <li><a href="{% url 'decks:detail' deck.id %}">{{ deck.name }}</a></li>
+    {% endfor %}
+</ul>

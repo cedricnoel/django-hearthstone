@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
 	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
+    path('decks/', include('decks.urls')),
     path('admin/', admin.site.urls),
     path('packet/', include('packet.urls')),
     path('', include('user.urls', namespace="User"))
