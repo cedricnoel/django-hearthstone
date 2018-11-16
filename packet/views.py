@@ -4,6 +4,8 @@ from .models import Packet
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from random import randint
+from django_currentuser.middleware import (
+    get_current_user, get_current_authenticated_user)
 
 # Create your views here.
 
@@ -13,6 +15,7 @@ def open_packet(self, packet_id):
     packet =  get_object_or_404(Packet, pk=packet_id)
     count = Card.objects.count()
     all_cards = Card.objects.all()
+    user = get_current_user()
     cards = []
     for k in range(0, packet.card_number):
         cards.append(all_cards[randint(0, count - 1)])

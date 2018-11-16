@@ -19,6 +19,8 @@ def login(request):
 def register(request):
     return render(request, 'user/register.html')
 
+def password_reset(request):
+    return render(request, 'user/password.html')
 
 @login_required
 def profile(request):
