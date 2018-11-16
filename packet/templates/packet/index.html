@@ -1,7 +1,7 @@
 {% if packets %}
 <ul>
     {% for packet in packets %}
-    <li><a href="{% url 'packet:open' %}">{{ packet.name }}</a></li>
+    <li><a href="{% url 'packet:open' packet.id %}">{{ packet.name }}</a></li>
     {% endfor %}
 </ul>
 {% endif %}
