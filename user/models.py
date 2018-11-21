@@ -7,21 +7,17 @@ from django.dispatch import receiver
 from django.db import models
 from django.contrib.auth.models import User
 
-class card_user(models.Model):
+class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cards = models.ManyToManyField(Card)
- 
+    points = models.IntegerField(default=1000)
 
     def __str__(self):
         return self.user.username
 
+
 @receiver(post_save, sender=User)
 def create_user(sender, instance, created, **kwargs):
     if created:
-        user.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user(sender, instance, **kwargs):
-    instance.profile.save()
+        profile.objects.create(user=instance)
 
 
