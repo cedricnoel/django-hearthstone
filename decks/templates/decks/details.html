@@ -3,7 +3,7 @@
 
 <h3>Les cartes :</h3>
 <ul>
-    {% for card in cards %}
+    {% for card in deck.items.all %}
         <li><a href="{% url 'cards:detail' card.id %}">{{ card.name }}</a></li>
     {% endfor %}
 </ul>
