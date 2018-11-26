@@ -10,16 +10,22 @@ from django_currentuser.middleware import (
 # Create your views here.
 
 @login_required
-def open_packet(self, packet_id):
-    #TODO: Check if user is connected and if he has enough points
+def open_packet(request, packet_id):
+    user = request.user.profile.points
     packet =  get_object_or_404(Packet, pk=packet_id)
-    count = Card.objects.count()
-    all_cards = Card.objects.all()
-    user = get_current_user()
-    cards = []
-    for k in range(0, packet.card_number):
-        cards.append(all_cards[randint(0, count - 1)])
-    return HttpResponse(cards)
+    if request.user.profile.points < packet.cost:
+        return render(request,'packet/showCards.html', {'cards': [], "error": "Vous n'avez pas assez de points"},)
+    else:
+        count = Card.objects.count()
+        all_cards = Card.objects.all()
+        user = get_current_user()
+        cards = []
+        for k in range(0, packet.card_number):
+            card = all_cards[randint(0, count - 1)]
+            card.owners.add(user)
+            cards.append(card)
+        user.profile.points = user.profile.points - packet.cost
+        return render(request,'packet/showCards.html', {'cards': cards, "error": ""},)
 
 
 @login_required
