@@ -3,6 +3,7 @@ from django_currentuser.middleware import (get_current_user, get_current_authent
 
 from cards.models import Card
 from .models import Deck
+from .forms import DeckForm
 
 def index(request):
     current_user = get_current_authenticated_user()
@@ -23,19 +24,25 @@ def details(request, deck_id):
 
 def new(request):
     if request.user.is_authenticated:
-        return render(request, 'decks/new.html')
+        cards = Card.objects.all()
+
+        form = DeckForm()
+
+        return render(request, 'decks/new.html', {
+            'cards': cards,
+            'form': form
+        })
     else:
         return redirect('user:login')
 
 def store(request):
-    if request.user.is_authenticated and request.POST:
-        deck_name = request.POST['name']
-        current_user = get_current_authenticated_user()
+    if request.user.is_authenticated and request.method == 'POST':
+        form = DeckForm(request.POST)
 
-        deck = Deck.objects.create()
-        deck.owner = current_user
-        deck.name = deck_name
-        deck.save()
+        if form.is_valid():
+            deck = form.save()
+
+            return redirect('decks:detail', deck_id = deck.id)
 
         return redirect('decks:index')
     else:
@@ -43,14 +50,21 @@ def store(request):
 
 def edit(request, deck_id):
     deck = Deck.objects.get(id = deck_id)
+    form = DeckForm(instance=deck)
 
     return render(request, 'decks/edit.html', {
-        'deck': deck
+        'deck': deck,
+        'form': form
     })
 
 def update(request, deck_id):
-    if request.user.is_authenticated:
-        Deck.objects.filter(id = deck_id).update(name = request.POST['name'])
+    if request.user.is_authenticated and request.method == 'POST':
+        form = DeckForm(request.POST)
+
+        if form.is_valid():
+            deck = form.save()
+
+            return redirect('decks:detail', deck_id=deck.id)
 
     return redirect('decks:index')
 

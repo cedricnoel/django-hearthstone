@@ -15,7 +15,7 @@ class Card(models.Model):
     life = models.IntegerField(default=1)
     atk = models.IntegerField(default=1)
     cost = models.IntegerField(default=0)
-    deck = models.ManyToManyField(Deck, related_name="cards")
+    deck = models.ManyToManyField(Deck, related_name="cards", blank=True)
     desc = models.TextField()
     type = models.ManyToManyField(Type)
     image = models.ImageField(upload_to = 'cards/static/img/', default = 'cards/static/img/no-img.jpg')
