@@ -2,6 +2,12 @@
 {% static "" as baseUrl %}
 
 <h1>{{ card.name }}</h1>
+<p><strong>Owners</strong></p>
+<ul>
+    {% for owner in card.owners.all %}
+        <li>{{ owner.username }}</li>
+    {% endfor %}
+</ul>
 <p>Life : {{ card.life }}</p>
 <p>ATK : {{ card.atk }}</p>
 <p>Cost : {{ card.cost }}</p>

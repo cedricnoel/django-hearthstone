@@ -10,12 +10,13 @@ class Type(models.Model):
         return self.name
 
 class Card(models.Model):
+    #owners = models.ManyToManyField("User", related_name="cards", through="CardQuantity")
     name = models.CharField(max_length=200)
     life = models.IntegerField(default=1)
     atk = models.IntegerField(default=1)
     cost = models.IntegerField(default=0)
-    deck = models.ForeignKey(Deck, on_delete=models.SET_NULL, null=True)
-    descr = models.TextField()
+    deck = models.ManyToManyField(Deck, related_name="cards", blank=True)
+    desc = models.TextField()
     type = models.ManyToManyField(Type)
     image = models.ImageField(upload_to = 'cards/static/img/', default = 'cards/static/img/no-img.jpg')
     pub_date = models.DateTimeField('date published')
