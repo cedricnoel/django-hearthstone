@@ -3,7 +3,7 @@
 {% if my_cards %}
     <ul>
 	    {% for card in my_cards %}
-	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.name }}</a></li>
+	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.card.name }}({{ card.quantity }})</a></li>
 	    {% endfor %}
     </ul>
 {% else %}
