@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'packet.apps.PacketConfig',
     'decks.apps.DecksConfig',
+    'forum.apps.ForumConfig'
 ]
 
 MIDDLEWARE = [

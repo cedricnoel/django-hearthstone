@@ -1,0 +1,22 @@
+<h1>Forum page</h1>
+
+<h2>Subjects</h2>
+<ul>
+    {% for subject in subjects %}
+        <li>
+            {{ subject.title }}
+            <ul>
+                {% for comment in subject.comments.all %}
+                    <li>
+                        Commentaire de {{ comment.author.username }}
+                        <ul>
+                            {% for answer in comment.answers.all %}
+                                <li>Réponse de {{ answer.author.username }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
