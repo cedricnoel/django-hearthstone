@@ -1,7 +1,7 @@
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import Card
+from django.shortcuts import render, get_list_or_404
+from .models import Card, Card_quantity
 
 class IndexView(generic.ListView):
     template_name = 'cards/index.html'
@@ -17,4 +17,5 @@ class DetailView(generic.DetailView):
 @login_required
 def my_cards(request):
     user = request.user
-    return render(request,'cards/my_cards.html', {'my_cards': user.cards.all() })
+    all_cards = get_list_or_404(Card_quantity, owner = user)
+    return render(request,'cards/my_cards.html', {'my_cards': all_cards })
