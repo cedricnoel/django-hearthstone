@@ -1,0 +1,29 @@
+{% if error %}
+    {{ error }}
+{% endif %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% if cards %}
+<ul>
+    {% for card in cards %}
+    <li> 
+            <h1>{{ card.name }}</h1>
+            <p>Life : {{ card.life }}</p>
+            <p>ATK : {{ card.atk }}</p>
+            <p>Cost : {{ card.cost }}</p>
+            <p>Types :</p>
+            <ul>
+                {% for type in card.type.all %}
+                    <li>{{ type }}</li>
+                {% endfor %}
+            </ul>
+            <p>Description :</p>
+            <p>{{ card.descr }}</p>
+            
+            <img src="{{card.image.url}}" alt="">
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}

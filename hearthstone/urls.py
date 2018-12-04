@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from cards import views as cardViews
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
 	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
+    path('decks/', include('decks.urls')),
     path('admin/', admin.site.urls),
-]
+    path('packet/', include('packet.urls')),
+    path('', include('user.urls', namespace="User"))
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

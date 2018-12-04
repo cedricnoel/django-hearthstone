@@ -1,0 +1,9 @@
+<h1>Edit a Deck</h1>
+
+<form action="{% url 'decks:update' deck.id %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <p>
+        <button type="submit">Add</button>
+    </p>
+</form>

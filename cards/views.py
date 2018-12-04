@@ -1,5 +1,6 @@
 from django.views import generic
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from .models import Card
 
 class IndexView(generic.ListView):
@@ -12,3 +13,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Card
     template_name = 'cards/detail.html'
+
+@login_required
+def my_cards(request):
+    user = request.user
+    return render(request,'cards/my_cards.html', {'my_cards': user.cards.all() })

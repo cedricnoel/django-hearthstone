@@ -1,0 +1,9 @@
+<h1>{{ deck.name }}</h1>
+<h2>Ce deck apartient à : {{ deck.owner.username }}</h2>
+
+<h3>Les cartes :</h3>
+<ul>
+    {% for card in deck.items.all %}
+        <li><a href="{% url 'cards:detail' card.id %}">{{ card.name }}</a></li>
+    {% endfor %}
+</ul>

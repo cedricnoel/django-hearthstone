@@ -1,3 +1,12 @@
+{% if user.is_authenticated %}
+    <p>Welcome, <a href="{% url 'user:profile' %}">{{ user.username }}</a>. <a href="{% url 'user:logoutAction' %}">Logout</a></p>  
+{% else %}
+    <p>Welcome, new user. Please <a href="{% url 'user:login' %}">Login</a></p>
+{% endif %}
+
+<a href="{% url 'decks:index' %}">Voir mes Decks</a>
+
+<h2>Liste des cartes</h2>
 {% if latest_cards %}
     <ul>
 	    {% for card in latest_cards %}

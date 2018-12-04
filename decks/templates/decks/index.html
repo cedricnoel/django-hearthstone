@@ -1,0 +1,12 @@
+<h1>Mes decks</h1>
+<a href="{% url 'decks:new' %}">Add new</a>
+<a href="{% url 'cards:index' %}">Got to Home</a>
+<ul>
+    {% for deck in decks %}
+        <li>
+            <a href="{% url 'decks:detail' deck.id %}">{{ deck.name }}</a> -
+            <a href="{% url 'decks:edit' deck.id %}">Edit</a> -
+            <a href="{% url 'decks:delete' deck.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>

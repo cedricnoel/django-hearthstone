@@ -1,0 +1,8 @@
+<h1>Add new Deck</h1>
+
+<form action="{% url 'decks:store' %}" method="POST">
+    {% csrf_token %}
+    {{ form.name }}
+    {{ form.items }}
+    <button type="submit">Save</button>
+</form>
