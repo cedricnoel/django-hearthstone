@@ -5,7 +5,22 @@
 
 {% block content %}
 
-<h1>Liste des cartes</h1>
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+        <div class="image" data-speed="0.4">
+            <img src="media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+        </div>
+    
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                    <h1 class="h1">Liste des cartes</h1>
+                
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <div class="content-wrap no-banner">
@@ -42,7 +57,7 @@
                                             
                                             <div class="rating">
                                                 {% for type in card.type.all %}
-                                                <span>{{ type }}</span>
+                                                <span class="badge show" style="background-color: {{type.color}}">{{ type }}</span>
                                                 {% endfor %}
                                             </div>
                                             
@@ -73,6 +88,24 @@
                 
             </div>
         </div>
+
+
+         <!-- Right Side -->
+         <div class="col-md-3">
+            
+            <!-- Side Search -->
+            <div class="side-block">
+                <p>Rechercher une carte :</p>
+                <form action="search.html">
+                    <div class="youplay-input">
+                        <input type="text" name="search" placeholder="Rechercher une carte">
+                    </div>
+                </form>
+            </div>
+            <!-- /Side Search -->
+            
+                    </div>
+                    <!-- /Right Side -->
     </div>
 </div>
 
