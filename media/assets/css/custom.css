@@ -1,0 +1,13 @@
+/* PLACE YOUR CUSTOM STYLES IN THIS FILE */
+
+.container.block-content{
+    padding-top: 90px;
+}
+
+.youplay-store.store-grid .isotope-list ul{
+    list-style: none;
+}
+
+.angled-img .img > img {
+    max-height: 180px;
+}
