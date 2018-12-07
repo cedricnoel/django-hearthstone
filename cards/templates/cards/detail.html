@@ -1,6 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 {% static "" as baseUrl %}
-
+{% block content %}
 <h1>{{ card.name }}</h1>
 <p><strong>Owners</strong></p>
 <ul>
@@ -21,3 +22,4 @@
 <p>{{ card.descr }}</p>
 
 <img src="{{card.image.url}}" alt="">
+{% endblock %}

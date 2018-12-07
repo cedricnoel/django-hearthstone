@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 {% if user.is_authenticated %}
 <form method="POST" action="{% url 'user:profile_edit_action' %}">
         {% csrf_token %}
@@ -13,3 +17,5 @@
     <input type="submit" value="Save edit">
 </form>
 {% endif %}
+
+{% endblock %}

@@ -1,11 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+{% block content %}
+
 <h1>MY CARDS</h1>
 
 {% if my_cards %}
     <ul>
 	    {% for card in my_cards %}
-	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.card.name }}({{ card.quantity }})</a></li>
+	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.card.name }} <span class="badge bg-default">{{ card.quantity }}</span></a></li>
 	    {% endfor %}
     </ul>
 {% else %}
     <p>No cards are available.</p>
 {% endif %}
+
+{% endblock %}
