@@ -108,6 +108,11 @@
                             </ul>
                         </div>
                     </li>
+                    <li class=" dropdown dropdown-hover">
+                        <a href="{% url 'packet:index' %}" class="dropdown-toggle">
+                            Pack
+                        </a>
+                    </li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -116,7 +121,6 @@
                             <i class="fa fa-search"></i>
                         </a>
                     </li>
-                    <li class="dropdown dropdown-hover dropdown-user">
                         {% if user.is_authenticated %}
                         <li class=" dropdown dropdown-hover">
                             <a href="{% url 'user:profile' %}">
@@ -130,23 +134,24 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="user-messages.html">
-                                        Messages
-                                        <span class="badge bg-default">8</span>
-                                    </a>
+                                    <a href="{% url 'user:logoutAction' %}">Se deconnecter <i class="fas fa-sign-out-alt"></i></a></p>  
                                 </li>
                             </ul></div>
                         </li>
-                    </li>
                     <li>
-                        <a href="{% url 'user:logoutAction' %}">Se deconnecter <i class="fas fa-sign-out-alt"></i></a></p>  
+                        <a href="#" class="dropdown-toggle points" data-toggle="dropdown" role="button" aria-expanded="false">{{user.profile.points}} <img src="{{static}}/media/assets/images/diamond.png" alt="points"></a>
+                            
                     </li>
                 </ul>
             </div>
             {% else %}
-            <a href="{% url 'user:login' %}" class="dropdown-toggle">
-                Se connecter <i class="fa fa-user"></i>
-            </a>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url 'user:login' %}" class="dropdown-toggle">
+                        Se connecter <i class="fa fa-user"></i>
+                    </a>
+                </li>
+            </ul>
             {% endif %}
         </li>
     </ul>
@@ -154,7 +159,7 @@
 </div>
 </nav>
 <!-- /Navbar -->
-<div class="container block-content">
+<div class="content-wrap block-content">
         {% block content %}
         {% endblock content %}
 </div>
@@ -165,7 +170,7 @@
         <!-- Copyright -->
         <div class="copyright">
             <div class="container">
-                <p>2018 &copy; <strong>Django hearthstone</strong>. All rights reserved</p>
+                <p>2018 &copy; <strong>Decker</strong>. All rights reserved</p>
             </div>
         </div>
         <!-- /Copyright -->

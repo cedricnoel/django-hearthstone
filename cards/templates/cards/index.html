@@ -8,7 +8,7 @@
 <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
     
         <div class="image" data-speed="0.4">
-            <img src="media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+            <img src="{{static}}/media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
         </div>
     
     <div class="info">
@@ -63,13 +63,13 @@
                                             
                                         </div>
                                         <div class="col-xs-3">
-                                            <div class="price">
-                                                {{card.atk}}
+                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
+                                                {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
                                             </div>
                                         </div>
                                         <div class="col-xs-3">
-                                            <div class="price">
-                                                    {{card.life}}
+                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
+                                                    {{card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
                                             </div>
                                         </div>
                                     </div>

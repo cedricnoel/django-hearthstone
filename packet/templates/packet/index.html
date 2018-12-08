@@ -1,7 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+    <div class="image" data-speed="0.4">
+        <img src="{{static}}/media/assets/images/wallpaper2.jpg" alt="" class="jarallax-img">
+    </div>
+
+<div class="info">
+    <div>
+        <div class="container">
+            
+                <h1 class="h1">Packets</h1>
+            
+        </div>
+    </div>
+</div>
+</section>
+
+
+
 {% if packets %}
-<ul>
+<div class="isotope-list row vertical-gutter packets">
     {% for packet in packets %}
-    <li><a href="{% url 'packet:open' packet.id %}">{{ packet.name }}</a></li>
+            <div class="item col-lg-4 col-md-6 col-xs-12 {% if packet.cost > user.profile.points %}not-enought-points{% endif %}" data-filters="popular">
+                <a href="{% url 'packet:open' packet.id %}" class="angled-img"  {% if packet.cost > user.profile.points %} onClick="return false;" {% endif %}>
+                    <div class="img img-offset">
+                        <img src="{{packet.image.url}}" alt="">
+                    </div>
+                    <div class="bottom-info">
+                        <h4>{{ packet.name }}</h4>
+                        <p>{{ packet.description }}</p>
+                        <div class="row">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="price">
+                                        {{ packet.cost }} <img src="{{static}}/media/assets/images/diamond.png" alt="cost">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
     {% endfor %}
-</ul>
+        </div>
 {% endif %}
+{% endblock %}
