@@ -100,6 +100,17 @@ def store_comment(request):
 
         return redirect('forum:index')
 
+def delete_comment(request, comment_id):
+    if request.user.is_authenticated:
+        comment = Comment.objects.get(pk=comment_id)
+
+        if comment.subject.author.id == request.user.id:
+            comment.delete()
+
+            return redirect('forum:index')
+
+        return redirect('forum:index')
+
 def new_answer(request, comment_id):
     if request.user.is_authenticated:
         comment = Comment.objects.get(pk=comment_id)
@@ -119,6 +130,18 @@ def store_answer(request):
             comment = Comment.objects.get(pk=request.POST['comment'])
             answer = Answer(author=current_user, content=request.POST['content'], comment=comment)
             answer.save()
+
+            return redirect('forum:index')
+
+        return redirect('forum:index')
+
+
+def delete_answer(request, answer_id):
+    if request.user.is_authenticated:
+        answer = Answer.objects.get(pk=answer_id)
+
+        if answer.comment.subject.author.id == request.user.id:
+            answer.delete()
 
             return redirect('forum:index')
 
