@@ -1,17 +1,31 @@
 <h1>Forum page</h1>
-
+{% if form.errors %}
+  <ul>
+    {% for key,value in form.errors.items %}
+      <li>{{ key|escape }} : {{ value|escape }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 <h2>Subjects</h2>
 <ul>
     {% for subject in subjects %}
         <li>
-            {{ subject.title }}
+            {{ subject.title }} : <strong>{{ subject.id }}</strong><br/>
+            {{ subject.content }}
+            {% if subject.author.id == current_user.id %}
+                <a href="{% url 'forum:edit-subject' subject.id %}">Edit</a>
+                <a href="{% url 'forum:delete-subject' subject.id %}">Delete</a>
+            {% endif %}
             <ul>
                 {% for comment in subject.comments.all %}
                     <li>
-                        Commentaire de {{ comment.author.username }}
+                        Commentaire de {{ comment.author.username }} <br/>
+                        {{ comment.content }}
                         <ul>
                             {% for answer in comment.answers.all %}
-                                <li>Réponse de {{ answer.author.username }}</li>
+                                <li>Réponse de {{ answer.author.username }} <br/>
+                                    {{ answer.content }}
+                                </li>
                             {% endfor %}
                         </ul>
                     </li>

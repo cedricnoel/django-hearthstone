@@ -1,0 +1,21 @@
+<h1>edit subject</h1>
+
+<form action="{% url 'forum:update-subject' subject_id %}" method="post">
+    {% csrf_token %}
+    {{ form.author.as_hidden }}
+
+    {{ form.title.label_tag }}
+    <p>{{ form.title }}</p>
+    {{ form.title.errors }}
+
+    {{ form.subtitle.label_tag }}
+    <p>{{ form.subtitle }}</p>
+    {{ form.subtitle.errors }}
+
+    {{ form.content.label_tag }}
+    <p>{{ form.content }}</p>
+    {{ form.content.errors }}
+    <p>
+        <button type="submit">Save</button>
+    </p>
+</form>

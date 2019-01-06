@@ -1,7 +1,7 @@
-from django.forms import ModelForm
+import django.forms as forms
 from .models import Subject, Comment, Answer
 
-class SubjectForm(ModelForm):
+class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = [
@@ -10,14 +10,14 @@ class SubjectForm(ModelForm):
             'content'
         ]
 
-class CommentForm(ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = [
             'content'
         ]
 
-class AnswerForm(ModelForm):
+class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = [
