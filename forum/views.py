@@ -140,7 +140,7 @@ def delete_answer(request, answer_id):
     if request.user.is_authenticated:
         answer = Answer.objects.get(pk=answer_id)
 
-        if answer.comment.subject.author.id == request.user.id:
+        if answer.comment.subject.author.id == request.user.id or answer.author.id == request.user.id:
             answer.delete()
 
             return redirect('forum:index')

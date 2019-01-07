@@ -16,6 +16,7 @@
                 <a href="{% url 'forum:edit-subject' subject.id %}">Edit</a>
                 <a href="{% url 'forum:delete-subject' subject.id %}">Delete</a>
             {% endif %}
+            <a href="{% url 'forum:new-comment' subject.id %}">New comment</a>
             <ul>
                 {% for comment in subject.comments.all %}
                     <li>
@@ -24,12 +25,13 @@
                         {% if subject.author.id == current_user.id %}
                             <a href="{% url 'forum:delete-comment' comment.id %}">Delete</a>
                         {% endif %}
+                        <a href="{% url 'forum:new-answer' comment.id %}">New answer</a>
                         <ul>
                             {% for answer in comment.answers.all %}
                                 <li>Réponse de {{ answer.author.username }} <br/>
                                     {{ answer.content }}
                                 </li>
-                                {% if subject.author.id == current_user.id %}
+                                {% if subject.author.id == current_user.id or answer.author.id == current_user.id %}
                                     <a href="{% url 'forum:delete-answer' answer.id %}">Delete</a>
                                 {% endif %}
                             {% endfor %}
