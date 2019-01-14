@@ -34,7 +34,12 @@ class Answer(models.Model):
 class Action(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="actions")
     content = models.CharField(max_length=255)
-    pub_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
+    pub_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return 'Action de ' + self.author.username
+
+class Follower(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following")
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name="follower")
+    pub_date = models.DateTimeField(auto_now_add=True, blank=True)

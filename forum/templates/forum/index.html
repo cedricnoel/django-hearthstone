@@ -7,6 +7,7 @@
   </ul>
 {% endif %}
 <h2>Subjects</h2>
+<a href="{% url 'forum:new-subject' %}">New subject</a>
 <ul>
     {% for subject in subjects %}
         <li>

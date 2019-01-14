@@ -1,7 +1,7 @@
 from django.views import generic
 from django.shortcuts import render, redirect
 from django_currentuser.middleware import (get_current_user, get_current_authenticated_user)
-from .models import Subject, Comment, Answer
+from .models import Subject, Comment, Answer, Action
 from .forms import SubjectForm, CommentForm, AnswerForm
 
 def index(request):
@@ -36,6 +36,11 @@ def store_subject(request):
                 content=request.POST['content']
             )
             subject.save()
+            action = Action(
+                author=current_user,
+                content=current_user.username + ' a posté un nouveau sujet'
+            )
+            action.save()
 
             return redirect('forum:index')
 
@@ -96,6 +101,12 @@ def store_comment(request):
             comment = Comment(author=current_user, content=request.POST['content'], subject=subject)
             comment.save()
 
+            action = Action(
+                author=current_user,
+                content=current_user.username + ' a posté un nouveau commentaire'
+            )
+            action.save()
+
             return redirect('forum:index')
 
         return redirect('forum:index')
@@ -130,6 +141,12 @@ def store_answer(request):
             comment = Comment.objects.get(pk=request.POST['comment'])
             answer = Answer(author=current_user, content=request.POST['content'], comment=comment)
             answer.save()
+
+            action = Action(
+                author=current_user,
+                content=current_user.username + ' a répondu à un commentaire'
+            )
+            action.save()
 
             return redirect('forum:index')
 
