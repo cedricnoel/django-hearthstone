@@ -89,3 +89,20 @@
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
+.single-card .description{
+    width: 80%;
+    margin: 20px auto 0 auto;
+}
+
+.single-card .badge{
+    position: relative;
+    opacity: 1;
+    -webkit-transform: skew(-7deg);
+    -ms-transform: skew(-7deg);
+    transform: skew(-7deg);
+}
+
+.angled-img .single-card .price img{
+    height: 40px;
+}
