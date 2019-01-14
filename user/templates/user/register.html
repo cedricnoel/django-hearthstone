@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+
     <form method="POST" action="{% url 'user:registerAction' %}">
         {% csrf_token %}
         <p>
@@ -22,6 +20,4 @@
     </form>
 </body>
 </html>
-
-
-
+{% endblock %}

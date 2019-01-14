@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from decks.models import Deck
+from colorfield.fields import ColorField
 
 class Type(models.Model):
     name = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    color = ColorField(default='#FF0000')
 
     def __str__(self):
         return self.name
