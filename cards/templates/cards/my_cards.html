@@ -3,14 +3,29 @@
 {% static "" as baseUrl %}
 {% block content %}
 
-<div class="container">
-        <h1>MY CARDS</h1>
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+        <div class="image" data-speed="0.4">
+            <img src="{{static}}/media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+        </div>
+    
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                    <h1 class="h1">Mes cartes</h1>
+                
+            </div>
+        </div>
+    </div>
+</section>
 
+<div class="content-wrap no-banner container">
         {% if my_cards %}
         <ul class="list-unstyled my_cards">
             {% for card in my_cards %}
             <li class="col-lg-2 col-md-3 col-xs-4">
-                <a href="{% url 'cards:detail' card.id %}" class="item" data-filters="popular,specials">
+                <a href="{% url 'cards:detail' card.card.id %}" class="item" data-filters="popular,specials">
                     <div class="row">
                         <div>
                             <div class="angled-img">

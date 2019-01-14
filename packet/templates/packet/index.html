@@ -25,7 +25,7 @@
 
 
 {% if packets %}
-<div class="isotope-list row vertical-gutter packets">
+<div class="isotope-list row packets">
     {% for packet in packets %}
             <div class="item col-lg-4 col-md-6 col-xs-12 {% if packet.cost > user.profile.points %}not-enought-points{% endif %}" data-filters="popular">
                 <a href="{% url 'packet:open' packet.id %}" class="angled-img"  {% if packet.cost > user.profile.points %} onClick="return false;" {% endif %}>
