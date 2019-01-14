@@ -37,5 +37,5 @@ def open_packet(request, packet_id):
 
 @login_required
 def index(request):
-    packets = Packet.objects.order_by('-pub_date')
+    packets = Packet.objects.order_by('cost')
     return render(request,'packet/index.html', {'packets': packets})

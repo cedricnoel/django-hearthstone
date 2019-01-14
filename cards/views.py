@@ -8,7 +8,7 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_cards'
 
     def get_queryset(self):
-        return Card.objects.order_by('-pub_date')[:5]
+        return Card.objects.order_by('name')
 
 class DetailView(generic.DetailView):
     model = Card
