@@ -106,3 +106,24 @@
 .angled-img .single-card .price img{
     height: 40px;
 }
+
+.single-deck{
+    padding: 15px;
+}
+
+.single-deck .control{
+    position: absolute;
+    top: 24px;
+    right: 10px;
+}
+
+.single-deck .control a{
+    margin-right: 5px;
+}
+
+.single-deck .deck-name{
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-decoration: none;
+}
