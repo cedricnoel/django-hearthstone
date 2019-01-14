@@ -3,16 +3,33 @@
 {% static "" as baseUrl %}
 {% block content %}
 
-<h1>MY CARDS</h1>
+<div class="container">
+        <h1>MY CARDS</h1>
 
-{% if my_cards %}
-    <ul>
-	    {% for card in my_cards %}
-	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.card.name }} <span class="badge bg-default">{{ card.quantity }}</span></a></li>
-	    {% endfor %}
-    </ul>
-{% else %}
-    <p>No cards are available.</p>
-{% endif %}
+        {% if my_cards %}
+        <ul class="list-unstyled my_cards">
+            {% for card in my_cards %}
+            <li class="col-lg-2 col-md-3 col-xs-4">
+                <a href="{% url 'cards:detail' card.id %}" class="item" data-filters="popular,specials">
+                    <div class="row">
+                        <div>
+                            <div class="angled-img">
+                                <div class="img">
+                                    <img src="{{card.card.image.url}}" alt="">
+                                    <div class="badge show bg-default">    {{ card.quantity }}</div>
+                                </div>
+                            </div>
+                            <h4 class="text-center">{{ card.card.name }}</h4>
+                        </div>
+                    </div>
+                </a>        
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No cards are available.</p>
+        {% endif %}
+</div>
 
 {% endblock %}
+

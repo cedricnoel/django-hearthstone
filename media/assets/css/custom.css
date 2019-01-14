@@ -52,6 +52,11 @@
     transform: skew(-7deg);
 }
 
+.packets{
+    padding: 15px 0px;
+    margin: 0;
+}
+
 .packets .angled-img .img.img-offset{
     text-align: center;
 }
@@ -78,4 +83,9 @@
 
 .packets .item.not-enought-points .price{
     color: red;
+}
+
+.my_cards li{
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
