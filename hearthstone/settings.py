@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'packet.apps.PacketConfig',
     'decks.apps.DecksConfig',
     'colorfield',
+    'forum.apps.ForumConfig'
 ]
 
 MIDDLEWARE = [

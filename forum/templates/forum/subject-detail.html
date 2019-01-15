@@ -1,0 +1,22 @@
+<h1>{{ subject.title }}</h1>
+<h2>{{ subject.subtitle }}</h2>
+
+<p>{{ subject.content }}</p>
+
+<h3>Comments</h3>
+<ul>
+    {% for comment in subject.comments.all %}
+        <li>
+            <strong>Commentaire de {{ comment.author.username }}</strong><br/>
+            {{ comment.content }} - <a href="{% url 'forum:new-answer' comment.id %}">Répondre</a>
+            <ul>
+                {% for answer in comment.answers.all %}
+                    <li>
+                        <strong>Réponse de {{ answer.author.username }}</strong><br/>
+                        {{ answer.content }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
