@@ -3,19 +3,78 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <p>
-        <label>Username : </label>
-        {{ user.username }}
-    </p>
-    <p>
-        <label>email : </label>
-        {{ user.email }}
-    </p>
-    <a href="{% url 'user:profile_edit' %}">Edit profile</a>
+<!--
+    Banner
 
-    <p>
-        Points : {{user.profile.points}}
-    </p>
+    Additional classes:
+        .small
+        .xsmall
+        .big
+        .full
+-->
+<section class="youplay-banner banner-top youplay-banner-parallax small">
+    
+    <div class="image" data-speed="0.4">
+        <img src="assets/images/dark/game-diablo-iii-1400x656.jpg" alt="" class="jarallax-img">
+    </div>
+
+
+<div class="youplay-user-navigation">
+    <div class="container">
+        <ul>
+            <li><a href="user-activity.html">Activité</a></li>
+            <li class="active"><a href="user-profile.html">Profil</a></li>
+            <li><a href="user-messages.html">Messages <span class="badge">6</span></a></li>
+            <li><a href="#">Forums</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="info">
+    <div>
+        <div class="container youplay-user">
+            <a href="assets/images/dark/user-photo.jpg" class="angled-img image-popup">
+                <div class="img">
+                    <img src="assets/images/dark/user-avatar.jpg" alt="">
+                </div>
+                <i class="fa fa-search-plus icon"></i>
+            </a>
+            <div class="user-data">
+                <h2>{{ user.username }}</h2>
+                <div class="location"><i class="fa fa-map-marker"></i>{{ user.email }}</div>
+                <div class="activity">
+                    <div>
+                        <div class="num">{{ user.profile.points }}</div>
+                        <div class="title">Points</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-20">
+            <a href="{% url 'user:profile_edit' %}" class="btn btn-sm btn-default ml-0">Modifier mon profil</a>
+        </div>
+    </div>
+</div>
+</section>
+<!-- /Banner -->
+
+    
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+
+          
+        </div>
+
+    </div>
+
+</div>
+
 {% endif %}
 
 {% endblock %}

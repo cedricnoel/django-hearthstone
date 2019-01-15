@@ -3,14 +3,29 @@
 {% static "" as baseUrl %}
 {% block content %}
 
+<div class="container youplay-content">
 
-<h1>Add new Deck</h1>
+        <div class="row">
+    
+            <div class="col-md-9">
+    
+                    <h1>Add new Deck</h1>
 
-<form action="{% url 'decks:store' %}" method="POST">
-    {% csrf_token %}
-    {{ form.name }}
-    {{ form.items }}
-    <button type="submit">Save</button>
-</form>
+                    <form action="{% url 'decks:store' %}" method="POST">
+                        {% csrf_token %}
+                <div class="youplay-input">
+                        {{ form.name }}
+                </div>
+                <div class="youplay-input">
+                        {{ form.items }}
+                </div>
+                        <button class="btn btn-default db" type="submit">Save</button>
+                    </form>
+
+            </div>
+    
+        </div>
+    
+    </div>
 
 {% endblock %}
