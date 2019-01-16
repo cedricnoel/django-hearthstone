@@ -24,6 +24,7 @@
         {% if my_cards %}
         <ul class="list-unstyled my_cards">
             {% for card in my_cards %}
+            {% if card.quantity > 0 %}
             <li class="col-lg-2 col-md-3 col-xs-4">
                 <a href="{% url 'cards:detail' card.card.id %}" class="item" data-filters="popular,specials">
                     <div class="row">
@@ -41,6 +42,7 @@
                     </div>
                 </a>        
             </li>
+            {% endif %}
             {% endfor %}
         </ul>
         {% else %}
