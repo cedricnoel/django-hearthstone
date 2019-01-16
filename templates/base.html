@@ -113,6 +113,21 @@
                             Pack
                         </a>
                     </li>
+                    <li class=" dropdown dropdown-hover">
+                            <a href="{% url 'forum:index' %}" class="dropdown-toggle">
+                                Forums
+                            </a>
+                        </li>
+                        <li class=" dropdown dropdown-hover">
+                                <a href="{% url 'challenge:index' %}" class="dropdown-toggle">
+                                    Challenger
+                                </a>
+                            </li>
+                            <li class=" dropdown dropdown-hover">
+                                    <a href="{% url 'challenge:challenge_list' %}" class="dropdown-toggle">
+                                        Historique de challenge
+                                    </a>
+                                </li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

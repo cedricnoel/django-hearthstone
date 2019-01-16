@@ -59,10 +59,11 @@ def edit(request, deck_id):
 
 def update(request, deck_id):
     if request.user.is_authenticated and request.method == 'POST':
-        form = DeckForm(request.POST)
+        deck = Deck.objects.get(pk=deck_id)
+        form = DeckForm(request.POST, instance=deck)
 
         if form.is_valid():
-            deck = form.save()
+            form.save()
 
             return redirect('decks:detail', deck_id=deck.id)
 

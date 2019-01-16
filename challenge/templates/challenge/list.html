@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<div class="container youplay-content">
+
+        <div class="row">
+    
+            <div class="col-md-9">
+    
+                    <h1>Challenge list</h1>
+                    <p>You challenged:</p>
+                    <ul>
+                        {% for challenge in challenging %}
+                            <li>{{ challenge.player2.username }} : {{ challenge.status }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p>You have been challenged by:</p>
+                    <ul>
+                        {% for challenge in challenged %}
+                            <li>{{ challenge.player1.username }} : {{ challenge.status }} <br/>
+                                {% if challenge.status == 'pending' %}
+                                    <form action="{% url 'challenge:fight' challenge.id %}" method="post">
+                                        {% csrf_token %}
+                                        <label for="deck">Choose your deck</label>
+                                        <select name="deck" id="deck">
+                                            {% for deck in decks %}
+                                                <option value="{{ deck.id }}">{{ deck.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit">Fight !</button>
+                                    </form>
+                                    <form action="{% url 'challenge:decline' challenge.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit">Decline</button>
+                                    </form>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+            </div>
+    
+        </div>
+    
+    </div>
+
+
+{% endblock %}

@@ -1,9 +1,37 @@
-<h1>Edit a Deck</h1>
+{% extends 'base.html' %}
 
-<form action="{% url 'decks:update' deck.id %}" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <p>
-        <button type="submit">Add</button>
-    </p>
-</form>
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+
+                <h1>Edit a Deck</h1>
+
+                <form action="{% url 'decks:update' deck.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="youplay-input">
+                            {{ form.name }}
+                    </div>
+                    <div class="youplay-input">
+                            {{ form.items }}
+                    </div>
+                    <p>
+                        <button class="btn btn-default db" type="submit">Add</button>
+                    </p>
+                </form>
+          
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
