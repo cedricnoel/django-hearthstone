@@ -68,6 +68,18 @@
 
         <div class="col-md-9">
 
+           <p>You follow:</p>
+    <ul>
+        {% for followed in user.following.all %}
+            <li>{{ followed.follower.username }}
+                <ul>
+                    {% for action in followed.follower.actions.all %}
+                        <li>{{ action.content }} : {{ action.pub_date }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
           
         </div>
 

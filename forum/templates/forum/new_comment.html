@@ -1,0 +1,15 @@
+<h1>New comment</h1>
+
+<form action="{% url 'forum:store-comment' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="subject" value="{{ subject.id }}">
+    {% for field in form.visible_fields %}
+        <label>{{ field.label_tag }}</label>
+        {{ field.errors }}
+        {{ field }}
+        {{ field.help_text }}
+    {% endfor %}
+    <p>
+        <button type="submit">Save</button>
+    </p>
+</form>
