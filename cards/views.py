@@ -2,6 +2,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Card, Card_quantity
+from django.http import HttpResponseRedirect
 
 class IndexView(generic.ListView):
     template_name = 'cards/index.html'
@@ -14,15 +15,17 @@ def detail(request, pk):
     user = request.user
     card = get_object_or_404(Card, pk=pk)
     user_card = get_object_or_404(Card_quantity, owner = user, card=card)
-    return render(request, 'cards/detail.html', {
-        'card': user_card
-    })
+    if user_card.quantity >0:
+        return render(request, 'cards/detail.html', {
+            'card': user_card
+        })
+    else:
+        return HttpResponseRedirect("/cards/my_cards")
 
 @login_required
 def my_cards(request):
     user = request.user
     all_cards = Card_quantity.objects.filter(owner=user)
-
     return render(request,'cards/my_cards.html', {'my_cards': all_cards })
 
 @login_required
