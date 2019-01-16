@@ -1,21 +1,44 @@
-<h1>edit subject</h1>
+{% extends 'base.html' %}
 
-<form action="{% url 'forum:update-subject' subject_id %}" method="post">
-    {% csrf_token %}
-    {{ form.author.as_hidden }}
+{% block content %}
 
-    {{ form.title.label_tag }}
-    <p>{{ form.title }}</p>
-    {{ form.title.errors }}
+{% if user.is_authenticated %}
 
-    {{ form.subtitle.label_tag }}
-    <p>{{ form.subtitle }}</p>
-    {{ form.subtitle.errors }}
+    
+<div class="container youplay-content">
 
-    {{ form.content.label_tag }}
-    <p>{{ form.content }}</p>
-    {{ form.content.errors }}
-    <p>
-        <button type="submit">Save</button>
-    </p>
-</form>
+    <div class="row">
+
+        <div class="col-md-9">
+
+                <h1>Editer une discussion</h1>
+
+                <form action="{% url 'forum:update-subject' subject_id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.author.as_hidden }}
+                
+                    {{ form.title.label_tag }}
+                    <p>{{ form.title }}</p>
+                    {{ form.title.errors }}
+                
+                    {{ form.subtitle.label_tag }}
+                    <p>{{ form.subtitle }}</p>
+                    {{ form.subtitle.errors }}
+                
+                    {{ form.content.label_tag }}
+                    <p>{{ form.content }}</p>
+                    {{ form.content.errors }}
+                    <p>
+                        <button type="submit">Enregistrer</button>
+                    </p>
+                </form>
+          
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

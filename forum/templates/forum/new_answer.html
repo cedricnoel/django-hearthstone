@@ -1,12 +1,59 @@
-<h1>New answer</h1>
-<form action="{% url 'forum:store-answer' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="comment" value="{{ comment.id }}">
-    <p>
-        <label for="content">Content :</label>
-        {{ form.content }}
-    </p>
-    <p>
-        <button type="submit">Save</button>
-    </p>
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+
+                <ul class="youplay-forum mr-10">
+
+                        <li class="body">
+
+                <div>
+                        <div class="top">
+                            <a class="author h5 pull-left" href="#">{{comment.author.username}}</a>
+                            <div class="date pull-right"><i class="fa fa-calendar"></i> {{comment.pub_date}}</div>
+                        </div>
+
+                        <div class="avatar pull-left">
+                            <img src="assets/images/dark/avatar-user-1.png" alt="">
+                        </div>
+                        <div class="reply clearfix">
+                            <div class="text">
+                                    {{ comment.content }}
+                            </div>
+                        </div>
+                </div>
+
+                <h1>Nouvelle réponse</h1>
+                <form action="{% url 'forum:store-answer' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment" value="{{ comment.id }}">
+                    <p>
+                        <label for="content">Contenu :</label>
+        <div class="youplay-input">
+                        {{ form.content }}
+                        </div>
+                    </p>
+                    <p>
+                        <button class="btn btn-sm ml-0 mr-0" type="submit">Envoyer la réponse</button>
+                    </p>
+                </form>
+
+        </div>
+    </li>
+</ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}
