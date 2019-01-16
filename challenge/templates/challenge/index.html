@@ -5,14 +5,26 @@
 
 {% block content %}
 
-<h1>Challenge</h1>
+<div class="container youplay-content">
 
-<ul>
-    {% for user in all_user %}
-    <li>
-        <a href="{% url 'challenge:challenge_request' user.id %}">{{user.username}}</a>
-    </li>
-    {% endfor %}
-</ul>
+        <div class="row">
+    
+            <div class="col-md-9">
+    
+                    <h1>Challenge</h1>
+
+                    <ul>
+                        {% for user in all_user %}
+                        <li>
+                            <a href="{% url 'challenge:challenge_request' user.id %}">{{user.username}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+              
+            </div>
+    
+        </div>
+    
+    </div>
 
 {% endblock %}
