@@ -4,11 +4,11 @@
 {% block content %}
 <div class="row angled-img">
     <div class="col-lg-6 col-xs-12">
-            <img src="{{card.card.image.url}}" alt="">
+            <img src="{{card.image.url}}" alt="">
     </div>
     <div class="col-lg-6 col-xs-12 single-card">
-            <h1>{{ card.card.name }} 
-                {% for type in card.card.type.all %}
+            <h1>{{ card.name }} 
+                {% for type in card.type.all %}
                     <span class="badge" style="background-color: {{type.color}}">{{ type }}</span>
                 {% endfor %}            
             </h1>
@@ -17,13 +17,13 @@
                     {{Message}}
                     {% endif %}
 
-                    {% if user.profile.card_count > 20 %}
-                    <form action="{% url 'cards:cards_sell' card.card.id %}" method="POST">
+                    {% if user.profile.card_count > 10 %}
+                    <form action="{% url 'cards:cards_sell' card.id %}" method="POST">
                                 {% csrf_token %}
                                 <label for="quantity">Quantité à vendre :</label>
                                 <select name="quantity" id="quantity">
                                         <option value="0" selected>0</option>
-                                            {% for i in "x"|ljust:card.quantity %}
+                                            {% for i in "x"|ljust:quantity %}
                                             <option value=" {{ forloop.counter }}"> {{ forloop.counter }}</option>     
                                         {% endfor %}
                                 </select>
@@ -34,19 +34,19 @@
             </div>
                 <div class="row">
                     <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Attack">
-                        {{card.card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
+                        {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
                     </div>
                     <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Life">
-                            {{card.card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
+                            {{card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
                     </div>
                     <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Cost">
-                            {{ card.card.cost }} <img src="{{static}}/media/assets/images/diamond.png" alt="cost">
+                            {{ card.cost }} <img src="{{static}}/media/assets/images/diamond.png" alt="cost">
                     </div>
                 </div>
                 <div class="row text-center description">
                         <hr>
                     <p>Description :</p>
-                    <p>{{ card.card.desc }}</p>
+                    <p>{{ card.desc }}</p>
                    </div>
           </div>
     </div>
