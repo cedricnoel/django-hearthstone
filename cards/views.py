@@ -21,15 +21,14 @@ def detail(request, pk):
             'user': False
         })
     else:
-        user_card = Card_quantity.objects.get(owner = user, card=card)
-
-        if user_card:
+        try:
+            user_card = Card_quantity.objects.get(owner = user, card=card)
             return render(request, 'cards/detail.html', {
                 'card': user_card.card,
                 'user': user,
                 'quantity': user_card.quantity
             })
-        else:
+        except:
             return render(request, 'cards/detail.html', {
                 'card': card,
                 'user': user
@@ -59,7 +58,7 @@ def cards_sell(request, pk):
     
     if quantity <= user_card.quantity and user_card.quantity > 0:
         user_card.quantity = user_card.quantity - quantity
-        user.profile.points = user.profile.points + (card.cost*10)*quantity
+        user.profile.points = user.profile.points + (card.cost*20)*quantity
         user.profile.card_count = user.profile.card_count - quantity
         user.profile.save()
         user_card.save()
