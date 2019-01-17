@@ -31,4 +31,55 @@
     {% endfor %}
 </ul>
 
+        <div class="pt-40 pb-40">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h1>Challenger le monde !</h1>
+                        <div class="h5 mnt-10 mb-40">Choisissez votre deck et lancer des défis au monde entier !</div>
+                    </div>
+                </div>
+
+
+
+                {% for user in all_user %}
+                <div class="row">
+                        <div class="col-md-5">
+                            <div class="youplay-match-left">
+                                <div class="youplay-match">
+                                    <div class="youplay-match-data text-right">
+                                        <h3>{{current_user.username}}</h3>
+                                    </div>
+                                    <div class="angled-img">
+                                        <div class="img">
+                                            <img src="assets/images/dark/clan-youplay.jpg" alt="Youplay">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <div class="youplay-match-vs">
+                                <span>VS</span>
+                                <p><a href="{% url 'challenge:challenge_request' user.id %}" class="btn btn-sm ml-0 mr-0">Défier ce joueur !</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="youplay-match-right">
+                                <div class="youplay-match">
+                                    <div class="angled-img">
+                                        <div class="img">
+                                            <img src="assets/images/dark/clan-team-secret.jpg" alt="Team Secret">
+                                        </div>
+                                    </div>
+                                    <div class="youplay-match-data">
+                                        <h3>{{user.username}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+    </div>
+
 {% endblock %}
