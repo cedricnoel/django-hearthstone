@@ -12,5 +12,6 @@ urlpatterns = [
     path('<int:deck_id>/update', views.update, name='update'),
     path('<int:deck_id>/delete', views.delete, name='delete'),
     path('<int:deck_id>/add_cards', views.add_cards, name='add-cards'),
-    path('test', views.test, name='test'),
+    path('add_deck_cards', views.add_deck_cards, name='add-deck-cards'),
+    path('remove_deck_cards', views.remove_card, name='remove-deck-cards'),
 ]

@@ -88,7 +88,7 @@ def add_cards(request, deck_id):
     })
 
 @login_required
-def test(request):
+def add_deck_cards(request):
     cards = Card_quantity.objects.filter(owner=request.user)
     deck = Deck.objects.get(pk=request.POST['deck_id'])
 
@@ -101,3 +101,12 @@ def test(request):
             deck_card.save()
 
     return  redirect('decks:detail', deck_id=deck.id)
+
+@login_required
+def remove_card(request):
+    if request.method == 'POST':
+        deck_card = Deck_cards.objects.get(pk=request.POST['deck_card'])
+        deck_card.quantity -= 1
+        deck_card.save()
+
+    return redirect('decks:detail', deck_id=request.POST['deck_id'])

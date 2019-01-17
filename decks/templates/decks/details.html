@@ -58,6 +58,16 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <form action="{% url 'decks:remove-deck-cards' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="deck_card" value="{{ card.id }}">
+                                    <input type="hidden" name="deck_id" value="{{ deck.id }}">
+                                    <button class="btn btn-xs btn-danger" type="submit">Retirer</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     {% endfor %}
                 {% endfor %}
