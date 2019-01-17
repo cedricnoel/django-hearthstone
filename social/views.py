@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import social
+from cards.models import Card, Card_quantity
 
 @login_required
 def index(request):
@@ -32,3 +33,9 @@ def follow(request, pk):
     except:
         social.objects.create(user=request.user, follow=follower)
         return HttpResponseRedirect("/social")
+
+@login_required
+def cards(request,pk):
+    user = User.objects.get(pk=pk)
+    my_cards = Card_quantity.objects.filter(owner=user)
+    return render(request,'social/cards.html', {'my_cards': my_cards, 'user': user })
