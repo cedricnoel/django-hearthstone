@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -22,3 +22,9 @@ def index(request):
         "all_user": all_user,
         "my_follow": my_follow
     })
+
+@login_required
+def follow(request, pk):
+    follower = User.objects.get(pk=pk)
+    social.objects.create(user=request.user, follow=follower)
+    return HttpResponseRedirect("/social")
