@@ -4,4 +4,4 @@ from django.forms import ModelForm
 class DeckForm(ModelForm):
     class Meta:
         model = Deck
-        fields = ['name', 'items']
+        fields = ['name']
