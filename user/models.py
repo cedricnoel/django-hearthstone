@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     points = models.IntegerField(default=1000)
+    card_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
