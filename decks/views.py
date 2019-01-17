@@ -94,10 +94,10 @@ def add_deck_cards(request):
     total = 0
 
     for x in range(0, len(cards)):
-        total += request.POST['quantity_' + str(cards[x].id)]
+        total = total + int(request.POST['quantity_' + str(cards[x].id)])
 
-        if not int(total) <= 10:
-            return redirect('decks:add-cards', deck_id=deck.id)
+    if not int(total) <= 10:
+        return redirect('decks:add-cards', deck_id=deck.id)
 
     for x in range(0, len(cards)):
         quantity = request.POST['quantity_' + str(cards[x].id)]
