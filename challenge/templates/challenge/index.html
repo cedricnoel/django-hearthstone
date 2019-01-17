@@ -10,7 +10,17 @@
 <ul>
     {% for user in all_user %}
     <li>
-        <a href="{% url 'challenge:challenge_request' user.id %}">{{user.username}}</a>
+        {{user.username}} -
+        <form action="{% url 'challenge:challenge_request'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="challenger_id" value="{{ user.id }}">
+            <select name="deck1" id="deck1">
+                {% for deck in decks %}
+                    <option value="{{ deck.id }}">{{ deck.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Cahllenge!</button>
+        </form>
     </li>
     {% endfor %}
 </ul>

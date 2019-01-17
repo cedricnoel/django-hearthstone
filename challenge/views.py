@@ -10,16 +10,18 @@ from django.contrib.auth.models import User
 @login_required
 def index(request):
     all_user = User.objects.all()
+    decks = Deck.objects.filter(owner=request.user)
 
-    return render(request,'challenge/index.html', {
-        "all_user": all_user
+    return render(request, 'challenge/index.html', {
+        "all_user": all_user,
+        'decks': decks
     })
 
 @login_required
-def challenge_request(request, challenger_id):
+def challenge_request(request):
     challenger = request.user
-    deck1 = Deck.objects.filter(owner=challenger).first()
-    challenged = User.objects.get(pk=challenger_id)
+    deck1 = Deck.objects.get(pk=int(request.POST['deck1']))
+    challenged = User.objects.get(pk=int(request.POST['challenger_id']))
 
     challenge = Challenge(
         player1=challenger,

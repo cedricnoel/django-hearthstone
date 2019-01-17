@@ -96,7 +96,7 @@ def add_deck_cards(request):
         quantity = request.POST['quantity_' + str(cards[x].id)]
 
         if int(quantity) > 0:
-            card = Card.objects.get(pk=cards[x].id)
+            card = cards[x].card
             deck_card = Deck_cards(card=card, deck=deck, quantity=quantity)
             deck_card.save()
 
