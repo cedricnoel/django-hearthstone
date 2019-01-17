@@ -34,8 +34,8 @@ def challenge_request(request):
 
 @login_required
 def challenge_list(request):
-    challenging = request.user.challenger.all() # Current user challenged them
-    challenged = request.user.challenged.all()  # They challenged current user
+    challenging = request.user.challenger.filter(status='pending') # Current user challenged them
+    challenged = request.user.challenged.filter(status='pending')  # They challenged current user
     decks = Deck.objects.filter(owner=request.user)
 
     return render(request, 'challenge/list.html', {
@@ -78,10 +78,31 @@ def fight(request, challenge_id):
 
         if game['lp1'] > game['lp2']:
             game['winner'] = challenge.player1.username
+
+            challenge.player1.profile.victory += 1
+            challenge.player1.profile.save()
+
+            challenge.player2.profile.defeat += 1
+            challenge.player2.profile.save()
+
+            challenge.status = 'win'
+
         elif game['lp1'] < game['lp2']:
             game['winner'] = challenge.player2.username
+
+            challenge.player2.profile.victory += 1
+            challenge.player2.profile.save()
+
+            challenge.player1.profile.defeat += 1
+            challenge.player1.profile.save()
+
+            challenge.status = 'lose'
+
         else:
             game['winner'] = 'nobody'
+
+            challenge.status = 'equality'
+            challenge.save()
 
         return HttpResponse(
             'Turn: ' + str(x) +
