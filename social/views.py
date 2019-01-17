@@ -6,14 +6,14 @@ from .models import social
 
 @login_required
 def index(request):
-    all_user = list(User.objects.all())
     user = request.user
+    all_user = list(User.objects.exclude(pk=user.id))
     try:
         my_follow = social.objects.all().filter(user=user)
     except:
         my_follow = None
-    
-    if my_follow is not None:
+
+    if my_follow is not None and len(my_follow) > 0:
         for follower in my_follow:
             if follower.follow in all_user:
                 all_user.remove(follower.follow)
@@ -26,5 +26,9 @@ def index(request):
 @login_required
 def follow(request, pk):
     follower = User.objects.get(pk=pk)
-    social.objects.create(user=request.user, follow=follower)
-    return HttpResponseRedirect("/social")
+    try:
+        social.objects.get(user=request.user, follow=follower)
+        return HttpResponseRedirect("/social")
+    except:
+        social.objects.create(user=request.user, follow=follower)
+        return HttpResponseRedirect("/social")
