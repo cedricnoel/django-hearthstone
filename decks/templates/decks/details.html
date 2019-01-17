@@ -3,78 +3,82 @@
 {% static "" as baseUrl %}
 {% block content %}
 
-<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
-    
+    <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+
         <div class="image" data-speed="0.4">
-            <img src="{{static}}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
+            <img src="{{ static }}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
         </div>
-    
-    <div class="info">
-        <div>
-            <div class="container">
-                
+
+        <div class="info">
+            <div>
+                <div class="container">
+
                     <h1 class="h1">{{ deck.name }}</h1>
-                
+
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<div class="content-wrap no-banner">
+    <div class="content-wrap no-banner">
         <div class="col-md-9">
-                <ul class="list-unstyled">
-                        {% for card in deck.items.all %}
-                            <li>
-                                    <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
-                                            <a href="{% url 'cards:detail' card.id %}" class="angled-img">
-                                                <div class="img img-offset">
-                                                    <img src="{{static}}{{card.image.url}}" alt="">
-                                                </div>
-                                                <div class="bottom-info">
-                                                    <h4>{{ card.name }}</h4>
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            
-                                                            <div class="rating">
-                                                                {% for type in card.type.all %}
-                                                                <span class="badge show" style="background-color: {{type.color}}">{{ type }}</span>
-                                                                {% endfor %}
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="col-xs-3">
-                                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
-                                                                {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xs-3">
-                                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
-                                                                    {{card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
+            <ul class="list-unstyled">
+                {% for card in cards %}
+                    {% for i in "x"|ljust:card.quantity %}
+                        <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
+                        <a href="{% url 'cards:detail' card.card.id %}" class="angled-img">
+                            <div class="img img-offset">
+                                <img src="{{ static }}{{ card.card.image.url }}" alt="">
+                            </div>
+                            <div class="bottom-info">
+                                <h4>{{ card.card.name }}</h4>
+                                <div class="row">
+                                    <div class="col-xs-6">
+
+                                        <div class="rating">
+                                            {% for type in card.card.type.all %}
+                                                <span class="badge show"
+                                                      style="background-color: {{ type.color }}">{{ type }}</span>
+                                            {% endfor %}
                                         </div>
-                        {% endfor %}
-                    </ul>
-                    
+
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
+                                            {{ card.card.atk }} <img src="{{ static }}/media/assets/images/atk.png"
+                                                                alt="attack">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
+                                            {{ card.card.life }} <img src="{{ static }}/media/assets/images/life.png"
+                                                                 alt="attack">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+
         </div>
         <div class="col-md-3">
-                    
-                <!-- Side Search -->
-                <div class="side-block">
-                    <p>Rechercher une carte :</p>
-                    <form action="search.html">
-                        <div class="youplay-input">
-                            <input type="text" name="search" placeholder="Rechercher une carte">
-                        </div>
-                    </form>
-                </div>
-                <!-- /Side Search -->
-                
-                        </div>
-</div>
+
+            <!-- Side Search -->
+            <div class="side-block">
+                <p>Rechercher une carte :</p>
+                <form action="search.html">
+                    <div class="youplay-input">
+                        <input type="text" name="search" placeholder="Rechercher une carte">
+                    </div>
+                </form>
+            </div>
+            <!-- /Side Search -->
+
+        </div>
+    </div>
 
 
 {% endblock %}

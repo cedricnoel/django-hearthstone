@@ -1,0 +1,17 @@
+<h1>Ajouter des cartes</h1>
+<form action="{% url 'decks:test' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="deck_id" value="{{ deck_id }}">
+    {% for card in cards %}
+        <p>
+            <label for="quantity_{{ card.id }}">{{ card.card.name }}</label>
+            <select name="quantity_{{ card.id }}" id="quantity_{{ card.id }}">
+                <option value="0" selected>0</option>
+                {% for i in "x"|ljust:card.quantity %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                {% endfor %}
+            </select>
+        </p>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
