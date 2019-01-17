@@ -9,36 +9,121 @@
 
         <div class="row">
     
-            <div class="col-md-9">
-    
-                    <h1>Challenge list</h1>
-                    <p>You challenged:</p>
-                    <ul>
-                        {% for challenge in challenging %}
-                            <li>{{ challenge.player2.username }} : {{ challenge.status }}</li>
+            <div class="col-md-6">
+                <h2>Mes Défis lancés</h2>
+                    {% for challenge in challenging %}
+                    <a class="youplay-single-match" href="#">
+                            <div class="pull-left">
+                                <div class="angled-img">
+                                    <div class="img">
+                                        <img src="assets/images/dark/clan-navi.jpg" alt="NAVI">
+                                    </div>
+                                </div>
+                                <h5 class="text-center">{{ challenge.player1.username }}</h5>
+                            </div>
+
+                            <div class="pull-left ml-30">
+                                <div class="angled-img">
+                                    <div class="img">
+                                        <img src="assets/images/dark/clan-ehome.jpg" alt="EHOME">
+                                    </div>
+                                </div>
+                                <h5 class="text-center">{{ challenge.player2.username }}</h5>
+                            </div>
+
+                            <div class="pull-left ml-30">
+                                    {% if challenge.status == 'pending' %}
+                                    <h3 class="youplay-match-title">En attente</h3>
+                                    <div class="date">Votre adversaire n'a pas encore répondu au duel</div>
+                                    {% elif challenge.status == 'declined' %}
+                                    <h3 class="youplay-match-title">Décliné</h3>
+                                    <div class="date">Votre adversaire n'a pas souhaité vous affrontez</div>
+                                    {% elif challenge.status == 'win' %}
+                                    <h3 class="youplay-match-title">VICTOIRE</h3>
+                                    <div class="date">Et une victoire de plus !</div>
+                                    {% elif challenge.status == 'lose' %}
+                                    <h3 class="youplay-match-title">DEFAITE</h3>
+                                    <div class="date">Vous ferez mieux la prochaine fois !</div>
+                                    {% endif %}
+                            </div>
+
+                            <div class="label youplay-match-count">{{challenge.status}}</div>
+
+                            <div class="clearfix"></div>
+                        </a>
                         {% endfor %}
-                    </ul>
-                    <p>You have been challenged by:</p>
+                    
+            </div>
+
+
+            <div class="col-md-6">
+                    <h2>Mes défis reçus</h2>
                     <ul>
                         {% for challenge in challenged %}
-                            <li>{{ challenge.player1.username }} : {{ challenge.status }} <br/>
+                            <a class="youplay-single-match" href="#">
+                                    <div class="pull-left">
+                                        <div class="angled-img">
+                                            <div class="img">
+                                                <img src="assets/images/dark/clan-navi.jpg" alt="NAVI">
+                                            </div>
+                                        </div>
+                                        <h5 class="text-center">{{ challenge.player1.username }}</h5>
+                                    </div>
+        
+                                    <div class="pull-left ml-30">
+                                        <div class="angled-img">
+                                            <div class="img">
+                                                <img src="assets/images/dark/clan-ehome.jpg" alt="EHOME">
+                                            </div>
+                                        </div>
+                                        <h5 class="text-center">{{ challenge.player2.username }}</h5>
+                                    </div>
+        
+                                    <div class="pull-left ml-30">
+                                            {% if challenge.status == 'pending' %}
+                                            <h3 class="youplay-match-title">En attente</h3>
+                                            <div class="date">{{ challenge.player1.username }} vous a lancé un défi !</div>
+                                            {% elif challenge.status == 'declined' %}
+                                            <h3 class="youplay-match-title">Décliné</h3>
+                                            <div class="date">Votre avez décliné le duel.</div>
+                                            {% elif challenge.status == 'win' %}
+                                            <h3 class="youplay-match-title">VICTOIRE</h3>
+                                            <div class="date">Et une victoire de plus !</div>
+                                            {% elif challenge.status == 'lose' %}
+                                            <h3 class="youplay-match-title">DEFAITE</h3>
+                                            <div class="date">Vous ferez mieux la prochaine fois !</div>
+                                            {% endif %}
+                                    </div>
+        
+                                    <div class="label youplay-match-count">{{challenge.status}}</div>
+        
+                                    <div class="clearfix"></div>
+                                </a>
                                 {% if challenge.status == 'pending' %}
-                                    <form action="{% url 'challenge:fight' challenge.id %}" method="post">
-                                        {% csrf_token %}
-                                        <label for="deck">Choose your deck</label>
-                                        <select name="deck" id="deck">
-                                            {% for deck in decks %}
-                                                <option value="{{ deck.id }}">{{ deck.name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        <button type="submit">Fight !</button>
-                                    </form>
-                                    <form action="{% url 'challenge:decline' challenge.id %}" method="post">
-                                        {% csrf_token %}
-                                        <button type="submit">Decline</button>
-                                    </form>
+                                <div class="row">
+                                            <form action="{% url 'challenge:fight' challenge.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <label for="deck">Choose your deck</label>
+                                                    <div class="form-group">
+                                                            <select name="deck" id="deck" class="form-control">
+                                                                    {% for deck in decks %}
+                                                                        <option value="{{ deck.id }}">{{ deck.name }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                    </div>
+                                    <div class="col-md-2">
+                                                    <button class="btn btn-sm ml-0 mr-0" type="submit">Fight !</button>
+                                                </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                            <form action="{% url 'challenge:decline' challenge.id %}" method="post">
+                                                    {% csrf_token %}
+                                                    <button class="btn btn-sm ml-0 mr-0"  type="submit">Decline</button>
+                                                </form>
+                                    </div>
+                                </div>
+                                <hr>
                                 {% endif %}
-                            </li>
                         {% endfor %}
                     </ul>
                     
