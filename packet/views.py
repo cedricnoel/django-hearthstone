@@ -31,6 +31,7 @@ def open_packet(request, packet_id):
             else:
                new_card_quantity = Card_quantity(card = card, owner = user, quantity = 1)
                new_card_quantity.save()
+        user.profile.card_count = user.profile.card_count + packet.card_number
         user.profile.points = user.profile.points - packet.cost
         user.profile.save()
         return render(request,'packet/showCards.html', {'cards': cards, "error": ""},)

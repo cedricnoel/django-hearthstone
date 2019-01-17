@@ -7,10 +7,31 @@
             <img src="{{card.image.url}}" alt="">
     </div>
     <div class="col-lg-6 col-xs-12 single-card">
-            <h1>{{ card.name }}         {% for type in card.type.all %}
+            <h1>{{ card.name }} 
+                {% for type in card.type.all %}
                     <span class="badge" style="background-color: {{type.color}}">{{ type }}</span>
-                    {% endfor %}            
+                {% endfor %}            
             </h1>
+            <div>
+                    {% if Message %}
+                    {{Message}}
+                    {% endif %}
+
+                    {% if user.profile.card_count > 10 %}
+                    <form action="{% url 'cards:cards_sell' card.id %}" method="POST">
+                                {% csrf_token %}
+                                <label for="quantity">Quantité à vendre :</label>
+                                <select name="quantity" id="quantity">
+                                        <option value="0" selected>0</option>
+                                            {% for i in "x"|ljust:quantity %}
+                                            <option value=" {{ forloop.counter }}"> {{ forloop.counter }}</option>     
+                                        {% endfor %}
+                                </select>
+                                <input type="submit" value="VENDRE">
+                    </form>
+                    {% endif %}
+                      
+            </div>
                 <div class="row">
                     <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Attack">
                         {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
@@ -29,7 +50,7 @@
                    </div>
           </div>
     </div>
-</div>
+
 
 
 

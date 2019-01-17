@@ -31,6 +31,3 @@ class Card_quantity(models.Model):
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0)
-
-    def __str__(self):
-        return self.card.name + "_" + self.owner.username
