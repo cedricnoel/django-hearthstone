@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import social
 from cards.models import Card, Card_quantity
+from decks.models import Deck, Deck_cards
 
 @login_required
 def index(request):
@@ -39,3 +40,22 @@ def cards(request,pk):
     user = User.objects.get(pk=pk)
     my_cards = Card_quantity.objects.filter(owner=user)
     return render(request,'social/cards.html', {'my_cards': my_cards, 'user': user })
+
+@login_required
+def decks(request,pk):
+    user = User.objects.get(pk=pk)
+    decks = Deck.objects.filter(owner=user)
+
+    deck_cards_list = []
+
+    for deck in decks:
+        try:
+            deck_cards = Deck_cards.objects.all().filter(deck=deck)
+        except:
+            deck.cards = None
+        deck_cards_list.append({"deck": deck, "cards": deck_cards})
+
+    return render(request, 'social/decks.html', {
+        'decks': deck_cards_list,
+        'user': user
+    })

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+{% block content %}
+
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+        <div class="image" data-speed="0.4">
+            <img src="{{static}}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
+        </div>
+    
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                    <h1 class="h1">Les decks de {{user.username}}</h1>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="content-wrap no-banner">
+        <div class="col-lg-12">
+                <ul class="list-unstyled">
+                        {% if decks %}
+                        {% for deck in decks %}
+
+                      <!-- Single Product Block -->
+                      <li class="item angled-bg single-deck">
+                            <p class="deck-name">
+                                    {{ deck.deck.name }}
+                            </p>
+                            <ul class="list-unstyled">
+                                {% if deck.cards %}
+                                    {% for card in deck.cards %}
+                                            <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
+                                            <a href="{% url 'cards:detail' card.card.id %}" class="angled-img">
+                                                <div class="img img-offset">
+                                                    <img src="{{ static }}{{ card.card.image.url }}" alt="">
+                                                </div>
+                                                <div class="angled-img">
+                                                        <div class="img">
+                                                            <img src="{{card.card.image.url}}" alt="">
+                                                            <div class="badge show bg-default">
+                                                                {{ card.quantity }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <div class="bottom-info">
+                                                    <h4>{{ card.card.name }}</h4>
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <div class="rating">
+                                                                {% for type in card.card.type.all %}
+                                                                    <span class="badge show"
+                                                                          style="background-color: {{ type.color }}">{{ type }}</span>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
+                                                                {{ card.card.atk }} <img src="{{ static }}/media/assets/images/atk.png"
+                                                                                    alt="attack">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3">
+                                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
+                                                                {{ card.card.life }} <img src="{{ static }}/media/assets/images/life.png"
+                                                                                     alt="attack">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                    {% endfor %}
+                                    {% endif %}
+                                </ul>
+                    
+            
+                                    {% endfor %}
+                                    {% else %}
+                                        <li>
+                                            <p>Aucun deck</p>
+                                        </li>
+                                    {% endif %}
+                                </li>
+                                </ul>
+        
+                      </div>
+                
+        </div>
+
+
+{% endblock %}

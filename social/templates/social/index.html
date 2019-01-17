@@ -31,7 +31,7 @@
                     <li>
                             {{follow.follow.username}}
                             <a href="{% url 'social:social_cards' follow.follow.id %}">Voir ses cartes</a>
-                            <a href="">Voir ses decks</a>
+                            <a href="{% url 'social:social_decks' follow.follow.id %}">Voir ses decks</a>
                             <a href="">Voir ses battles</a>
                         </li>
                     {% endfor %}
