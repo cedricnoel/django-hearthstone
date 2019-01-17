@@ -6,15 +6,18 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django_currentuser.middleware import (get_current_user, get_current_authenticated_user)
 
 @login_required
 def index(request):
+    current_user = get_current_authenticated_user()
     all_user = User.objects.all()
     decks = Deck.objects.filter(owner=request.user)
 
     return render(request, 'challenge/index.html', {
         "all_user": all_user,
-        'decks': decks
+        'decks': decks,
+        'current_user' : current_user
     })
 
 @login_required
@@ -34,8 +37,8 @@ def challenge_request(request):
 
 @login_required
 def challenge_list(request):
-    challenging = request.user.challenger.filter(status='pending') # Current user challenged them
-    challenged = request.user.challenged.filter(status='pending')  # They challenged current user
+    challenging = request.user.challenger.all() # Current user challenged them
+    challenged = request.user.challenged.all()  # They challenged current user
     decks = Deck.objects.filter(owner=request.user)
 
     return render(request, 'challenge/list.html', {
@@ -103,7 +106,7 @@ def fight(request, challenge_id):
         else:
             game['winner'] = 'nobody'
 
-            challenge.status = 'equality'
+            challenge.status = 'draw'
             challenge.save()
 
         return HttpResponse(
@@ -111,7 +114,8 @@ def fight(request, challenge_id):
             ', result: ' + str(result) +
             ', lp1: ' + str(game['lp1']) +
             ', lp2: ' + str(game['lp2']) +
-            ', winner: ' + game['winner']
+            ', winner: ' + game['winner'] +
+            ', status: ' + challenge.status 
         )
 
 def do_battle(card1, card2):
