@@ -17,7 +17,8 @@ def detail(request, pk):
     user_card = get_object_or_404(Card_quantity, owner = user, card=card)
     if user_card.quantity >0:
         return render(request, 'cards/detail.html', {
-            'card': user_card
+            'card': user_card,
+            'user': user
         })
     else:
         return HttpResponseRedirect("/cards/my_cards")
@@ -34,6 +35,13 @@ def cards_sell(request, pk):
     card = get_object_or_404(Card, pk=pk)
     user = request.user
     user_card =  get_object_or_404(Card_quantity, owner = user, card=card)
+
+    if user.profile.card_count <= 20 or user.profile.card_count - quantity <= 20:
+        return render(request, 'cards/detail.html', {
+                'card': user_card,
+                'Message' : 'Nombre de carte insuffisante, vous devez avoir minimum 20 cartes dans votre collection.',
+        })
+    
     if quantity <= user_card.quantity and user_card.quantity > 0:
         user_card.quantity = user_card.quantity - quantity
         user.profile.points = user.profile.points + (card.cost*10)*quantity

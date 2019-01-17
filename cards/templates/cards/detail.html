@@ -16,6 +16,8 @@
                     {% if Message %}
                     {{Message}}
                     {% endif %}
+
+                    {% if user.profile.card_count > 20 %}
                     <form action="{% url 'cards:cards_sell' card.card.id %}" method="POST">
                                 {% csrf_token %}
                                 <label for="quantity">Quantité à vendre :</label>
@@ -27,6 +29,7 @@
                                 </select>
                                 <input type="submit" value="VENDRE">
                     </form>
+                    {% endif %}
                       
             </div>
                 <div class="row">
