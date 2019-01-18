@@ -42,7 +42,7 @@ def store_subject(request):
             )
             action.save()
 
-            return redirect('forum:index')
+            return redirect('forum:subject-detail', pk=subject.id)
 
         return redirect('forum:index')
 
@@ -107,7 +107,7 @@ def store_comment(request):
             )
             action.save()
 
-            return redirect('forum:index')
+            return redirect('forum:subject-detail', pk=subject.id)
 
         return redirect('forum:index')
 
@@ -148,7 +148,7 @@ def store_answer(request):
             )
             action.save()
 
-            return redirect('forum:index')
+            return redirect('forum:subject-detail', pk=comment.subject.id)
 
         return redirect('forum:index')
 
@@ -160,7 +160,7 @@ def delete_answer(request, answer_id):
         if answer.comment.subject.author.id == request.user.id or answer.author.id == request.user.id:
             answer.delete()
 
-            return redirect('forum:index')
+            return redirect('forum:subject-detail', pk=comment.subject.id)            
 
         return redirect('forum:index')
 

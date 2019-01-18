@@ -1,8 +1,9 @@
+from decks.models import Deck, Deck_cards
+from django.http import HttpResponse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Card, Card_quantity
-from django.http import HttpResponseRedirect, HttpResponse
 
 class IndexView(generic.ListView):
     template_name = 'cards/index.html'
@@ -23,10 +24,17 @@ def detail(request, pk):
     else:
         try:
             user_card = Card_quantity.objects.get(owner = user, card=card)
+            decks = Deck.objects.filter(owner=user)
+            quantity = user_card.quantity
+
+            for deck in decks:
+                used_cards = Deck_cards.objects.get(deck=deck, card=card)
+                quantity -= used_cards.quantity
+
             return render(request, 'cards/detail.html', {
                 'card': user_card.card,
                 'user': user,
-                'quantity': user_card.quantity
+                'quantity': quantity
             })
         except:
             return render(request, 'cards/detail.html', {
@@ -39,7 +47,10 @@ def detail(request, pk):
 def my_cards(request):
     user = request.user
     all_cards = Card_quantity.objects.filter(owner=user)
-    return render(request,'cards/my_cards.html', {'my_cards': all_cards })
+
+    return render(request,'cards/my_cards.html', {
+        'my_cards': all_cards
+    })
 
 @login_required
 def cards_sell(request, pk):

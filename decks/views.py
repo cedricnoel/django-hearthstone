@@ -91,6 +91,13 @@ def add_cards(request, deck_id):
 def add_deck_cards(request):
     cards = Card_quantity.objects.filter(owner=request.user)
     deck = Deck.objects.get(pk=request.POST['deck_id'])
+    total = 0
+
+    for x in range(0, len(cards)):
+        total = total + int(request.POST['quantity_' + str(cards[x].id)])
+
+    if not int(total) <= 10:
+        return redirect('decks:add-cards', deck_id=deck.id)
 
     for x in range(0, len(cards)):
         quantity = request.POST['quantity_' + str(cards[x].id)]

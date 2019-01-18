@@ -13,20 +13,17 @@
 
   
                 <ul class="youplay-forum mr-10">
+                        <h1>Forums</h1>
+                        <a href="{% url 'forum:new-subject' %}" class="btn btn-sm ml-0 mr-0">Nouvelle discussion</a>
                         <li class="header">
                             <ul>
                                 <li class="cell-icon"></li>
-                                <li class="cell-info">Topic</li>
-                                <li class="cell-topic-count">Voices</li>
-                                <li class="cell-reply-count">Posts</li>
-                                <li class="cell-freshness">Freshness</li>
+                                <li class="cell-info">Titre</li>
+                                <li class="cell-freshness">Date</li>
+                                <li class="cell-freshness">Action</li>
                             </ul>
                         </li>
-        
                         <li class="body">
-
-
-                                <h1>Forums</h1>
                                 {% if form.errors %}
                                   <ul>
                                     {% for key,value in form.errors.items %}
@@ -34,30 +31,34 @@
                                     {% endfor %}
                                   </ul>
                                 {% endif %}
-                                <h2>Subjects</h2>
-                                <a href="{% url 'forum:new-subject' %}" class="btn btn-sm ml-0 mr-0">Nouvelle discussion</a>
                                 <ul>
-                                    {% for subject in subjects %}
-                                    <ul>
-                                            <li class="cell-icon">
-                                                <i class="far fa-folder-open"></i>
-                                            </li>
-                                            <li class="cell-info">
-                                                <a href="{% url 'forum:subject-detail' subject.id %}" class="title h4">{{ subject.title }}</a>
-                                                <div class="description">
-                                                    Crée par:
-                                                    <a href="#">
-                                                        <img alt="" src="assets/images/dark/avatar-user-2.png" height="15" width="15"> {{ subject.author.username }}
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li class="cell-topic-count">7</li>
-                                            <li class="cell-reply-count">21</li>
-                                            <li class="cell-freshness">
-                                                <a href="#">{{ subject.pub_date }}</a>
-                                            </li>
-                                        </ul>
-                                    {% endfor %}
+                                    {% if subjects %}
+                                        {% for subject in subjects %}
+                                        <ul>
+                                                <li class="cell-icon">
+                                                    <i class="far fa-folder-open"></i>
+                                                </li>
+                                                <li class="cell-info">
+                                                    <a href="{% url 'forum:subject-detail' subject.id %}" class="title h4">{{ subject.title }}</a>
+                                                    <div class="description">
+                                                        <a href="">
+                                                                Crée par {{ subject.author.username }}
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li class="cell-freshness">
+                                                    <a href="#">{{ subject.pub_date }}</a>
+                                                </li>
+                                                <li class="cell-freshness">
+                                                    <a href="{% url 'forum:subject-detail' subject.id %}" class="btn btn-default db">Voir le sujet</a>
+                                                </li>
+                                            </ul>
+                                        {% endfor %}
+                                    {% else %}
+                                    <div>
+                                        <p class="alert alert-warning">Aucun sujet de discussion n'a été ouvert.</p>
+                                    </div>
+                                    {% endif %}
                                 </ul>
 
                         </li>
