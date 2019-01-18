@@ -54,7 +54,7 @@
                                         <div class="text">
                                                 {{ subject.content }}
                                         </div>
-                                        <a href="{% url 'forum:new-comment' subject.id %}" class="pull-right">Répondre</a>
+                                        <a href="{% url 'forum:new-comment' subject.id %}" class="pull-right btn btn-sm ml-0 mr-0">Répondre</a>
                                     </div>
                             </div>
                             {% for comment in subject.comments.all %}
@@ -71,7 +71,7 @@
                                         <div class="text">
                                                 {{ comment.content }}
                                         </div>
-                                        <a href="{% url 'forum:new-answer' comment.id %}" class="pull-right">Répondre à ce commentaire</a>
+                                        <a href="{% url 'forum:new-answer' comment.id %}" class="pull-right btn btn-sm ml-0 mr-0">Répondre à ce commentaire</a>
                                     </div>
                             </div>
                             {% for answer in comment.answers.all %}
