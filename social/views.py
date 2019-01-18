@@ -64,4 +64,8 @@ def decks(request,pk):
 def social_battle(request, pk):
     user = User.objects.get(pk=pk)
     challenge = user.challenger.exclude(status ='pending')
-    return HttpResponse(challenge)
+    
+    return render(request, 'social/battles.html', {
+        'challenging': challenge,
+        'user': user
+    })
