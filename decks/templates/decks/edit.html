@@ -18,11 +18,9 @@
                     <div class="youplay-input">
                             {{ form.name }}
                     </div>
-                    <div class="youplay-input">
-                            {{ form.items }}
-                    </div>
                     <p>
-                        <button class="btn btn-default db" type="submit">Add</button>
+                        <button class="btn btn-default db" type="submit">Enregistrer le nom du Deck</button>
+                        <a href="{% url 'decks:add-cards' deck.id %}" class="btn btn-default db" type="submit">Ajouter de nouvelles cartes à votre Deck !</a>
                     </p>
                 </form>
           

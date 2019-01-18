@@ -9,7 +9,7 @@
     
             <div class="col-md-9">
     
-                    <h1>Add new Deck</h1>
+                    <h1>Taper le nom de votre nouveau Deck</h1>
 
                     <form action="{% url 'decks:store' %}" method="POST">
                         {% csrf_token %}
@@ -19,7 +19,7 @@
                 <div class="youplay-input">
                         {{ form.items }}
                 </div>
-                        <button class="btn btn-default db" type="submit">Save</button>
+                        <button class="btn btn-default db" type="submit">Ajouter des cartes à mon deck</button>
                     </form>
 
             </div>
