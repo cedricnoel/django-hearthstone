@@ -140,3 +140,7 @@
 .single-card .alert-info{
     width: 90%;
 }
+
+.btn-group-right{
+    float: right;
+}
