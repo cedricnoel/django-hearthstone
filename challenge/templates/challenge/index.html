@@ -4,74 +4,71 @@
 {% static "" as baseUrl %}
 
 {% block content %}
-
-<div class="container youplay-content">
-
+    <div class="container youplay-content">
         <div class="row">
-
             <div class="col-md-12">
-
-        <div class="pt-40 pb-40">
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <h1>Challenger le monde !</h1>
-                        <div class="h5 mnt-10 mb-40">Choisissez votre deck et lancer des défis au monde entier !</div>
+                <div class="pt-40 pb-40">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <h1>Challenger le monde !</h1>
+                            <div class="h5 mnt-10 mb-40">Choisissez votre deck et lancer des défis au monde entier !
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-
-
-                {% for user in all_user %}
-                <div class="row">
-                        <div class="col-md-5">
-                            <div class="youplay-match-left">
-                                <div class="youplay-match">
-                                    <div class="youplay-match-data text-right">
-                                        <h3>{{current_user.username}}</h3>
-                                    </div>
-                                    <div class="angled-img">
-                                        <div class="img">
-                                            <img src="assets/images/dark/clan-youplay.jpg" alt="Youplay">
+                    {% for user in all_user %}
+                        {% if current_user.username != user.username %}
+                            <div class="row">
+                            <div class="col-md-5">
+                                <div class="youplay-match-left">
+                                    <div class="youplay-match">
+                                        <div class="youplay-match-data text-right">
+                                            <h3>{{ current_user.username }}</h3>
+                                        </div>
+                                        <div class="angled-img">
+                                            <div class="img">
+                                                <img src="assets/images/dark/clan-youplay.jpg" alt="Youplay">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <div class="youplay-match-vs">
-                                <span>VS</span>
-
-                                <form action="{% url 'challenge:challenge_request'%}" method="post">
+                            <div class="col-md-2 text-center">
+                                <div class="youplay-match-vs">
+                                    <span>VS</span>
+                                    <form action="{% url 'challenge:challenge_request' %}" method="post">
                                         {% csrf_token %}
                                         <input type="hidden" name="challenger_id" value="{{ user.id }}">
                                         <div class="form-group">
-                                                <select name="deck1" id="deck1" class="form-control">
-                                                        {% for deck in decks %}
-                                                            <option value="{{ deck.id }}">{{ deck.name }}</option>
-                                                        {% endfor %}
-                                                    </select>
+                                            <select name="deck1" id="deck1" class="form-control">
+                                                {% for deck in decks %}
+                                                    <option value="{{ deck.id }}">{{ deck.name }}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                         <button class="btn btn-sm ml-0 mr-0" type="submit">Défier</button>
                                     </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="youplay-match-right">
-                                <div class="youplay-match">
-                                    <div class="angled-img">
-                                        <div class="img">
-                                            <img src="assets/images/dark/clan-team-secret.jpg" alt="Team Secret">
+                            <div class="col-md-5">
+                                <div class="youplay-match-right">
+                                    <div class="youplay-match">
+                                        <div class="angled-img">
+                                            <div class="img">
+                                                <img src="assets/images/dark/clan-team-secret.jpg" alt="Team Secret">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="youplay-match-data">
-                                        <h3>{{user.username}}</h3>
+                                        <div class="youplay-match-data">
+                                            <h3>{{ user.username }}</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
-
 {% endblock %}
