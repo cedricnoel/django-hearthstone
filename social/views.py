@@ -59,3 +59,9 @@ def decks(request,pk):
         'decks': deck_cards_list,
         'user': user
     })
+
+@login_required
+def social_battle(request, pk):
+    user = User.objects.get(pk=pk)
+    challenge = user.challenger.exclude(status ='pending')
+    return HttpResponse(challenge)
