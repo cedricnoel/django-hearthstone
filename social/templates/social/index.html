@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<div class="container youplay-content">
+        <div class="row">
+            <div class="col-md-6">
+                    <h1>Social</h1>
+                    <ul>
+                        {% if all_user %}
+                            {% for user in all_user %}
+                            <li>
+                                {{user.username}} <a href="{% url 'social:follow' user.id %}">Follow</a>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>
+                                <p>Aucun users</p>
+                            </li>
+                        {% endif %}
+                    </ul>
+            </div>
+            <div class="col-md-6">
+                    {% if my_follow %}
+                    <h1>Mes follow</h1>
+               <ul>
+                    {% for follow in my_follow %}
+                    <li>
+                            {{follow.follow.username}}
+                            <a href="{% url 'social:social_cards' follow.follow.id %}">Voir ses cartes</a>
+                            <a href="{% url 'social:social_decks' follow.follow.id %}">Voir ses decks</a>
+                            <a href="{% url 'social:social_battle' follow.follow.id %}">Voir ses battles</a>
+                        </li>
+                    {% endfor %}
+               </ul>
+               {% endif %}
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}

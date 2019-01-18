@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'decks.apps.DecksConfig',
     'colorfield',
     'forum.apps.ForumConfig',
-    'challenge.apps.ChallengeConfig'
+    'challenge.apps.ChallengeConfig',
+    'social.apps.SocialConfig',
 ]
 
 MIDDLEWARE = [

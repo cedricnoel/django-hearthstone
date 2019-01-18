@@ -2,7 +2,6 @@
 {% load static %}
 {% static "" as baseUrl %}
 {% block content %}
-
 <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
     
         <div class="image" data-speed="0.4">
@@ -12,7 +11,9 @@
     <div class="info">
         <div>
             <div class="container">
-                    <h1 class="h1">Mes cartes</h1>
+                
+                    <h1 class="h1">Les cartes de {{social_user.username}}</h1>
+                
             </div>
         </div>
     </div>

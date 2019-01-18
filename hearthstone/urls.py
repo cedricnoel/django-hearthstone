@@ -28,4 +28,5 @@ urlpatterns = [
     path('packet/', include('packet.urls')),
     path('', include('user.urls', namespace="User")),
     path('challenge/', include('challenge.urls')),
+    path('social/', include('social.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
