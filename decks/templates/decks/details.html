@@ -23,6 +23,7 @@
     <div class="content-wrap no-banner">
         <div class="col-md-9">
             <ul class="list-unstyled">
+                {% if cards %}
                 {% for card in cards %}
                     {% for i in "x"|ljust:card.quantity %}
                         <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
@@ -71,6 +72,12 @@
                     </div>
                     {% endfor %}
                 {% endfor %}
+                {% else %}
+                <div class="text-center">
+                    <p>Vous n'avez aucune cartes dans votre Deck !</p>
+                    <a href="{% url 'decks:add-cards' deck.id %}" class="btn btn-default db">Ajouter des cartes à votre deck</a>
+                </div>
+                {% endif %}
             </ul>
 
         </div>

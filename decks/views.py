@@ -45,7 +45,7 @@ def store(request):
         if form.is_valid():
             deck = form.save()
 
-            return redirect('decks:detail', deck_id = deck.id)
+            return redirect('decks:add-cards', deck_id = deck.id)
 
         return redirect('decks:index')
     else:
@@ -68,7 +68,7 @@ def update(request, deck_id):
         if form.is_valid():
             form.save()
 
-            return redirect('decks:detail', deck_id=deck.id)
+            return redirect('decks:add-cards', deck_id=deck.id)
 
     return redirect('decks:index')
 
