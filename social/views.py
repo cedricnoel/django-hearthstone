@@ -39,7 +39,7 @@ def follow(request, pk):
 def cards(request,pk):
     user = User.objects.get(pk=pk)
     my_cards = Card_quantity.objects.filter(owner=user)
-    return render(request,'social/cards.html', {'my_cards': my_cards, 'user': user })
+    return render(request,'social/cards.html', {'my_cards': my_cards, 'social_user': user })
 
 @login_required
 def decks(request,pk):
@@ -57,15 +57,15 @@ def decks(request,pk):
 
     return render(request, 'social/decks.html', {
         'decks': deck_cards_list,
-        'user': user
+        'social_user': user
     })
 
 @login_required
 def social_battle(request, pk):
     user = User.objects.get(pk=pk)
-    challenge = user.challenger.exclude(status ='pending')
+    challenge = user.challenged.exclude(status="pending").exclude(status="declined")
     
     return render(request, 'social/battles.html', {
         'challenging': challenge,
-        'user': user
+        'social_user': user
     })
