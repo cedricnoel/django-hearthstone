@@ -111,14 +111,12 @@ def fight(request, challenge_id):
             challenge.status = 'draw'
             challenge.save()
 
-        return HttpResponse(
-            'Turn: ' + str(x) +
-            ', result: ' + str(result) +
-            ', lp1: ' + str(game['lp1']) +
-            ', lp2: ' + str(game['lp2']) +
-            ', winner: ' + game['winner'] +
-            ', status: ' + challenge.status 
-        )
+        return render(request, 'challenge/result.html', {
+            'lp1': str(game['lp1']),
+            'lp2': str(game['lp2']),
+            'status': challenge.status,
+            'turns': str(x)
+        })
 
 def do_battle(card1, card2):
     if card1.atk > card2.atk:
