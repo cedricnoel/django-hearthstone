@@ -44,6 +44,9 @@
                                     {% elif challenge.status == 'lose' %}
                                     <h3 class="youplay-match-title">DEFAITE</h3>
                                     <div class="date">Vous ferez mieux la prochaine fois !</div>
+                                    {% elif challenge.status == 'draw' %}
+                                    <h3 class="youplay-match-title">EGALITE</h3>
+                                    <div class="date">Vous avez fait match nul !</div>
                                     {% endif %}
                             </div>
 
@@ -92,6 +95,9 @@
                                             {% elif challenge.status == 'lose' %}
                                             <h3 class="youplay-match-title">DEFAITE</h3>
                                             <div class="date">Vous ferez mieux la prochaine fois !</div>
+                                            {% elif challenge.status == 'draw' %}
+                                            <h3 class="youplay-match-title">EGALITE</h3>
+                                            <div class="date">Vous avez fait match nul !</div>
                                             {% endif %}
                                     </div>
         

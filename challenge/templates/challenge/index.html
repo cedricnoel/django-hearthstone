@@ -9,27 +9,7 @@
 
         <div class="row">
 
-            <div class="col-md-9">
-
-                    <h1>Challenge</h1>
-
-<ul>
-    {% for user in all_user %}
-    <li>
-        {{user.username}} -
-        <form action="{% url 'challenge:challenge_request'%}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="challenger_id" value="{{ user.id }}">
-            <select name="deck1" id="deck1">
-                {% for deck in decks %}
-                    <option value="{{ deck.id }}">{{ deck.name }}</option>
-                {% endfor %}
-            </select>
-            <button type="submit">Cahllenge!</button>
-        </form>
-    </li>
-    {% endfor %}
-</ul>
+            <div class="col-md-12">
 
         <div class="pt-40 pb-40">
                 <div class="row">
@@ -60,7 +40,18 @@
                         <div class="col-md-2 text-center">
                             <div class="youplay-match-vs">
                                 <span>VS</span>
-                                <p><a href="{% url 'challenge:challenge_request' user.id %}" class="btn btn-sm ml-0 mr-0">Défier ce joueur !</a></p>
+                                <form action="{% url 'challenge:challenge_request'%}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="challenger_id" value="{{ user.id }}">
+                                        <div class="form-group">
+                                                <select name="deck1" id="deck1" class="form-control">
+                                                        {% for deck in decks %}
+                                                            <option value="{{ deck.id }}">{{ deck.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                        </div>
+                                        <button class="btn btn-sm ml-0 mr-0" type="submit">Défier</button>
+                                    </form>
                             </div>
                         </div>
                         <div class="col-md-5">
