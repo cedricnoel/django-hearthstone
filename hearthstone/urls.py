@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
+	path('', cardViews.index, name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
     path('decks/', include('decks.urls')),
     path('forum/', include('forum.urls')),

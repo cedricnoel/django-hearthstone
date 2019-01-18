@@ -127,3 +127,20 @@
     font-size: 1.8em;
     text-decoration: none;
 }
+
+.sell-card select{
+    max-width: 100px;
+}
+
+.sell-card{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.single-card .alert-info{
+    width: 90%;
+}
+
+.btn-group-right{
+    float: right;
+}

@@ -14,20 +14,25 @@
             </h1>
             <div>
                     {% if Message %}
-                    {{Message}}
+                    <div class="alert alert-info" role="alert">
+                            {{Message}}
+                          </div>
                     {% endif %}
 
                     {% if user.profile.card_count > 10 %}
-                    <form action="{% url 'cards:cards_sell' card.id %}" method="POST">
+                    <p>
+                            <small>En vendant vos cartes, une partie de diamant vous seront redonnée</small>
+                        </p>
+                    <form class="sell-card" action="{% url 'cards:cards_sell' card.id %}" method="POST">
                                 {% csrf_token %}
-                                <label for="quantity">Quantité à vendre :</label>
-                                <select name="quantity" id="quantity">
+                                <select class="form-control" name="quantity" id="quantity"  data-toggle="tooltip" data-placement="left" title="Quantité de carte à vendre">
                                         <option value="0" selected>0</option>
                                             {% for i in "x"|ljust:quantity %}
                                             <option value=" {{ forloop.counter }}"> {{ forloop.counter }}</option>     
                                         {% endfor %}
                                 </select>
-                                <input type="submit" value="VENDRE">
+                                <button type="submit" class="btn btn-sm btn-default">VENDRE</button>
+                                <br>
                     </form>
                     {% endif %}
                       

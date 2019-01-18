@@ -3,14 +3,15 @@ from django.http import HttpResponse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .models import Card, Card_quantity
+from .models import Card, Card_quantity, Type
 
-class IndexView(generic.ListView):
-    template_name = 'cards/index.html'
-    context_object_name = 'latest_cards'
-
-    def get_queryset(self):
-        return Card.objects.order_by('name')
+def index(request):
+    card = Card.objects.order_by('name')
+    types = Type.objects.all()
+    return render(request, 'cards/index.html', {
+            'latest_cards': card,
+            'types': types
+    })
 
 def detail(request, pk):
     user = request.user
@@ -29,7 +30,8 @@ def detail(request, pk):
 
             for deck in decks:
                 used_cards = Deck_cards.objects.get(deck=deck, card=card)
-                quantity -= used_cards.quantity
+                if used_cards:
+                    quantity -= used_cards.quantity
 
             return render(request, 'cards/detail.html', {
                 'card': user_card.card,
