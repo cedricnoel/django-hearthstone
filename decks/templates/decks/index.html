@@ -41,8 +41,8 @@
                                     {{ deck.name }}
                                 </a>
                                 <div class="control">
-                                        <a href="{% url 'decks:edit' deck.id %}"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href="{% url 'decks:delete' deck.id %}"><i class="far fa-trash-alt"></i> Delete</a>
+                                        <a href="{% url 'decks:edit' deck.id %}" class="btn btn-default db" ><i class="fas fa-edit"></i> Editer</a>
+                                        <a href="{% url 'decks:delete' deck.id %}" class="btn btn-default db"><i class="far fa-trash-alt" class="btn btn-default db" ></i> Supprimer</a>
                                 </div>
             
                                     {% endfor %}
