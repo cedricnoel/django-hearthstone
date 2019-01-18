@@ -10,8 +10,7 @@ def index(request):
     types = Type.objects.all()
     return render(request, 'cards/index.html', {
             'latest_cards': card,
-            'types': types,
-            'user': False
+            'types': types
     })
 
 def detail(request, pk):
