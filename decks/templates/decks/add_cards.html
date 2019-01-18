@@ -4,71 +4,66 @@
 {% static "" as baseUrl %}
 
 {% block content %}
-
-<div class="container youplay-content">
-
+    <div class="container youplay-content">
         <div class="row">
-    
             <div class="col-md-12">
-    
-                    <h1>Ajouter des cartes</h1>
-                    <form action="{% url 'decks:add-deck-cards' %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="deck_id" value="{{ deck_id }}">
-                        <div class="row">
-                                {% for card in cards %}
-                                   <div class="item col-lg-4 col-md- col-xs-12" data-filters="popular">
-                                        <a href="{% url 'cards:detail' card.card.id %}" class="angled-img">
-                                            <div class="img img-offset">
-                                                <img src="{{ static }}{{ card.card.image.url }}" alt="">
+                <h1>Ajouter des cartes</h1>
+                <form action="{% url 'decks:add-deck-cards' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="deck_id" value="{{ deck_id }}">
+                    <div class="row">
+                        {% for card in cards %}
+                            <div class="item col-lg-4 col-md- col-xs-12" data-filters="popular">
+                                <a href="{% url 'cards:detail' card.card.id %}" class="angled-img">
+                                    <div class="img img-offset">
+                                        <img src="{{ static }}{{ card.card.image.url }}" alt="">
+                                    </div>
+                                    <div class="bottom-info">
+                                        <h4>{{ card.card.name }}</h4>
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="rating">
+                                                    {% for type in card.card.type.all %}
+                                                        <span class="badge show"
+                                                              style="background-color: {{ type.color }}">{{ type }}</span>
+                                                    {% endfor %}
+                                                </div>
+
                                             </div>
-                                            <div class="bottom-info">
-                                                <h4>{{ card.card.name }}</h4>
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                
-                                                        <div class="rating">
-                                                            {% for type in card.card.type.all %}
-                                                                <span class="badge show"
-                                                                      style="background-color: {{ type.color }}">{{ type }}</span>
-                                                            {% endfor %}
-                                                        </div>
-                
-                                                    </div>
-                                                    <div class="col-xs-3">
-                                                        <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
-                                                            {{ card.card.atk }} <img src="{{ static }}/media/assets/images/atk.png"
-                                                                                alt="attack">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-3">
-                                                        <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
-                                                            {{ card.card.life }} <img src="{{ static }}/media/assets/images/life.png"
-                                                                                 alt="attack">
-                                                        </div>
-                                                    </div>
+                                            <div class="col-xs-3">
+                                                <div class="price" data-toggle="tooltip" data-placement="top"
+                                                     title="Attack">
+                                                    {{ card.card.atk }} <img
+                                                        src="{{ static }}/media/assets/images/atk.png"
+                                                        alt="attack">
                                                 </div>
                                             </div>
-                                        </a>
-                                        <div class="form-group">
-                                                <select name="quantity_{{ card.id }}" id="quantity_{{ card.id }}" class="form-control">
-                                                        <option value="0" selected>0</option>
-                                                        {% for i in "x"|ljust:card.quantity %}
-                                                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                           </div>
+                                            <div class="col-xs-3">
+                                                <div class="price" data-toggle="tooltip" data-placement="top"
+                                                     title="Life">
+                                                    {{ card.card.life }} <img
+                                                        src="{{ static }}/media/assets/images/life.png"
+                                                        alt="attack">
+                                                </div>
+                                            </div>
                                         </div>
-                            {% endfor %}
-                        </div>
-                        <button class="btn btn-xl ml-0 mr-0" type="submit">Ajouter les cartes</button>
-                    </form>
-                    
-              
+                                    </div>
+                                </a>
+                                <div class="form-group">
+                                    <select name="quantity_{{ card.id }}" id="quantity_{{ card.id }}"
+                                            class="form-control">
+                                        <option value="0" selected>0</option>
+                                        {% for i in "x"|ljust:card.quantity %}
+                                            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-xl ml-0 mr-0" type="submit">Ajouter les cartes</button>
+                </form>
             </div>
-    
         </div>
-    
     </div>
-
 {% endblock %}
