@@ -90,7 +90,8 @@ def fight(request, challenge_id):
             challenge.player2.profile.defeat += 1
             challenge.player2.profile.save()
 
-            challenge.status = 'win'
+            challenge.status = 'lose'
+            challenge.save()
 
         elif game['lp1'] < game['lp2']:
             game['winner'] = challenge.player2.username
@@ -101,7 +102,8 @@ def fight(request, challenge_id):
             challenge.player1.profile.defeat += 1
             challenge.player1.profile.save()
 
-            challenge.status = 'lose'
+            challenge.status = 'win'
+            challenge.save()
 
         else:
             game['winner'] = 'nobody'
