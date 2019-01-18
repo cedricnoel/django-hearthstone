@@ -22,10 +22,27 @@
 <div class="youplay-user-navigation">
     <div class="container">
         <ul>
-            <li><a href="user-activity.html">Activité</a></li>
-            <li class="active"><a href="user-profile.html">Profil</a></li>
-            <li><a href="user-messages.html">Messages <span class="badge">6</span></a></li>
-            <li><a href="#">Forums</a></li>
+            <li><a href="user-activity.html">Nombre de Cartes débloqués <span class="badge">
+                {% if user.profile.card_count %}
+                {{ user.profile.card_count }}
+                {% else %}
+                    0
+                {% endif %}
+            </span></a></li>
+            <li><a href="user-messages.html">Nombre de Victoires <span class="badge">
+                {% if user.profile.victory %}
+                {{ user.profile.victory }}
+                {% else %}
+                    0
+                {% endif %}
+            </span></a></li>
+            <li><a href="user-messages.html">Nombre de Défaites <span class="badge">
+                    {% if user.profile.defeat %}
+                    {{ user.profile.defeat }}
+                    {% else %}
+                        0
+                    {% endif %}
+            </span></a></li>
         </ul>
     </div>
 </div>
@@ -58,34 +75,6 @@
 </div>
 </section>
 <!-- /Banner -->
-
-    
-
-    
-<div class="container youplay-content">
-
-    <div class="row">
-
-        <div class="col-md-9">
-
-           <p>You follow:</p>
-    <ul>
-        {% for followed in user.following.all %}
-            <li>{{ followed.follower.username }}
-                <ul>
-                    {% for action in followed.follower.actions.all %}
-                        <li>{{ action.content }} : {{ action.pub_date }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
-          
-        </div>
-
-    </div>
-
-</div>
 
 {% endif %}
 
