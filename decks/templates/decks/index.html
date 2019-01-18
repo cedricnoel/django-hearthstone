@@ -1,62 +1,53 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% static "" as baseUrl %}
-{% block content %}
 
-<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
-    
+{% block content %}
+    <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
         <div class="image" data-speed="0.4">
-            <img src="{{static}}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
+            <img src="{{ static }}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
         </div>
-    
-    <div class="info">
-        <div>
-            <div class="container">
-                
+        <div class="info">
+            <div>
+                <div class="container">
                     <h1 class="h1">Mes decks</h1>
-                
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
-<div class="content-wrap no-banner">
+    </section>
+    <div class="content-wrap no-banner">
         <div class="row">
             <div class="col-lg-12">
-                    <a href="{% url 'decks:new' %}" class="btn btn-lg">Ajouter un nouveau deck</a>
+                <a href="{% url 'decks:new' %}" class="btn btn-lg">Ajouter un nouveau deck</a>
             </div>
         </div>
         <div class="col-lg-12">
             <h2>
                 Mes decks
             </h2>
-                <ul class="list-unstyled">
-                        {% if decks %}
-                        {% for deck in decks %}
-
-                      <!-- Single Product Block -->
-                      <li class="item angled-bg single-deck">
+            <ul class="list-unstyled">
+                {% if decks %}
+                    {% for deck in decks %}
+                        <!-- Single Product Block -->
+                        <li class="item angled-bg single-deck">
                             <a href="{% url 'decks:detail' deck.id %}" class="deck-name" data-filters="">
-                                    {{ deck.name }}
-                                </a>
-                                <div class="control">
-                                        <a href="{% url 'decks:edit' deck.id %}" class="btn btn-default db" ><i class="fas fa-edit"></i> Editer</a>
-                                        <a href="{% url 'decks:delete' deck.id %}" class="btn btn-default db"><i class="far fa-trash-alt" class="btn btn-default db" ></i> Supprimer</a>
-                                </div>
-            
-                                    {% endfor %}
-                                    {% else %}
-                                        <li>
-                                            <p>Aucun deck</p>
-                                        </li>
-                                    {% endif %}
-                                </li>
-                                </ul>
-        
-                      </div>
-                
+                                {{ deck.name }}
+                            </a>
+                            <div class="control" style="top: 16px;">
+                                <a href="{% url 'decks:edit' deck.id %}" class="btn btn-sm btn-primary db"><i
+                                        class="fas fa-edit"></i> Editer</a>
+                                <a href="{% url 'decks:delete' deck.id %}" class="btn btn-sm db"><i
+                                        class="far fa-trash-alt" class="btn btn-default db"></i> Supprimer</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>
+                        <p>Aucun deck</p>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
-
-
+    </div>
 {% endblock %}

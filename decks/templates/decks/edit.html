@@ -1,35 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-
-    
-<div class="container youplay-content">
-
-    <div class="row">
-
-        <div class="col-md-9">
-
-                <h1>Edit a Deck</h1>
-
-                <form action="{% url 'decks:update' deck.id %}" method="POST">
-                    {% csrf_token %}
-                    <div class="youplay-input">
+    {% if user.is_authenticated %}
+        <div class="container youplay-content">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1>Edit a Deck</h1>
+                    <form action="{% url 'decks:update' deck.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="youplay-input">
                             {{ form.name }}
-                    </div>
-                    <p>
-                        <button class="btn btn-default db" type="submit">Enregistrer le nom du Deck</button>
-                        <a href="{% url 'decks:add-cards' deck.id %}" class="btn btn-default db" type="submit">Ajouter de nouvelles cartes à votre Deck !</a>
-                    </p>
-                </form>
-          
+                        </div>
+                        <p>
+                            <button class="btn btn-default db" type="submit">Enregistrer le nom du Deck</button>
+                            <a href="{% url 'decks:add-cards' deck.id %}" class="btn btn-default db" type="submit">Ajouter
+                                de nouvelles cartes à votre Deck !</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
-
-    </div>
-
-</div>
-
-{% endif %}
-
+    {% endif %}
 {% endblock %}

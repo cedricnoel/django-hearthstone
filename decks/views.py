@@ -73,7 +73,6 @@ def update(request, deck_id):
     return redirect('decks:index')
 
 def delete(request, deck_id):
-    #current_user = get_current_authenticated_user()
     deck = Deck.objects.get(id = deck_id)
     deck.delete()
 

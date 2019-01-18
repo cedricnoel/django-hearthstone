@@ -15,91 +15,93 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/bootstrap/dist/css/bootstrap.min.css"/>
     <!-- Flickity -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/flickity/dist/flickity.min.css" />
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/flickity/dist/flickity.min.css"/>
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/magnific-popup/dist/magnific-popup.css" />
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/magnific-popup/dist/magnific-popup.css"/>
     <!-- Revolution Slider -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/slider-revolution/css/settings.css">
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/slider-revolution/css/layers.css">
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/slider-revolution/css/navigation.css">
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/slider-revolution/css/settings.css">
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/slider-revolution/css/layers.css">
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/slider-revolution/css/navigation.css">
     <!-- Bootstrap Sweetalert -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/bootstrap-sweetalert/dist/sweetalert.css" />
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/bootstrap-sweetalert/dist/sweetalert.css"/>
     <!-- Social Likes -->
-    <link rel="stylesheet" href="{{static}}/media/assets/vendor/social-likes/dist/social-likes_flat.css" />
+    <link rel="stylesheet" href="{{ static }}/media/assets/vendor/social-likes/dist/social-likes_flat.css"/>
     <!-- FontAwesome -->
-    <script defer src="{{static}}/media/assets/vendor/font-awesome/svg-with-js/js/fontawesome-all.min.js"></script>
-    <script defer src="{{static}}/media/assets/vendor/font-awesome/svg-with-js/js/fa-v4-shims.min.js"></script>
+    <script defer src="{{ static }}/media/assets/vendor/font-awesome/svg-with-js/js/fontawesome-all.min.js"></script>
+    <script defer src="{{ static }}/media/assets/vendor/font-awesome/svg-with-js/js/fa-v4-shims.min.js"></script>
     <!-- Youplay -->
-    <link rel="stylesheet" href="{{static}}/media/assets/css/youplay.css">
+    <link rel="stylesheet" href="{{ static }}/media/assets/css/youplay.css">
     <!-- RTL (uncomment this to enable RTL support) -->
     <!-- <link rel="stylesheet" href="assets/css/youplay-rtl.min.css" /> -->
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{static}}/media/assets/css/custom.css">
+    <link rel="stylesheet" href="{{ static }}/media/assets/css/custom.css">
     <!-- END: Styles -->
     <!-- jQuery -->
-    <script src="{{static}}/media/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ static }}/media/assets/vendor/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="page-preloader preloader-wrapp">
-        <img src="{{static}}/media/assets/images/logo.png" alt="">
-        <div class="preloader"></div>
-    </div>
-    <!-- /Preloader -->
-    <!-- Navbar -->
-    <nav class="navbar-youplay navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="off-canvas" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">
-                    <img src="{{static}}/media/assets/images/logo.png" alt="">
-                </a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class=" dropdown dropdown-hover">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Les cartes
-                            <span class="caret"></span>
-                            <span class="label">games</span>
-                        </a><div class="dropdown-menu">
-                            <ul role="menu">
-                                    <li>
-                                        <a href="{% url 'cards:index' %}">
-                                               Toutes les cartes
-                                            </a>
-                                        </li>
-                                        {% if user.is_authenticated %}
+<!-- Preloader -->
+<div class="page-preloader preloader-wrapp">
+    <img src="{{ static }}/media/assets/images/logo.png" alt="">
+    <div class="preloader"></div>
+</div>
+<!-- /Preloader -->
+<!-- Navbar -->
+<nav class="navbar-youplay navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="off-canvas" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="{{ static }}/media/assets/images/logo.png" alt="">
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class=" dropdown dropdown-hover">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Les cartes
+                        <span class="caret"></span>
+                        <span class="label">games</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul role="menu">
+                            <li>
+                                <a href="{% url 'cards:index' %}">
+                                    Toutes les cartes
+                                </a>
+                            </li>
+                            {% if user.is_authenticated %}
                                 <li>
                                     <a href="{% url 'cards:my_cards' %}">
                                         Mes cartes
                                     </a>
                                 </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </li>
-                    {% if user.is_authenticated %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </li>
+                {% if user.is_authenticated %}
                     <li class=" dropdown dropdown-hover">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             Decks
                             <span class="caret"></span>
                             <span class="label">news</span>
-                        </a><div class="dropdown-menu">
+                        </a>
+                        <div class="dropdown-menu">
                             <ul role="menu">
                                 <li>
                                     <a href="{% url 'decks:index' %}">
                                         Mes decks
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="{% url 'decks:new' %}">
                                         Créer un deck
@@ -114,79 +116,96 @@
                         </a>
                     </li>
                     <li class=" dropdown dropdown-hover">
-                            <a href="{% url 'forum:index' %}" class="dropdown-toggle">
-                                Forums
-                            </a>
-                        </li>
-                        <li class=" dropdown dropdown-hover">
-                                <a href="{% url 'challenge:index' %}" class="dropdown-toggle">
-                                    Challenger
-                                </a>
-                            </li>
-                            <li class=" dropdown dropdown-hover">
-                                    <a href="{% url 'challenge:challenge_list' %}" class="dropdown-toggle">
-                                        Historique de challenge
-                                    </a>
-                                </li>
-                    {% endif %}
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="search-toggle" href="search.html">
-                            <i class="fa fa-search"></i>
+                        <a href="{% url 'forum:index' %}" class="dropdown-toggle">
+                            Forums
                         </a>
                     </li>
-                        {% if user.is_authenticated %}
-                        <li class=" dropdown dropdown-hover">
-                            <a href="{% url 'user:profile' %}">
-                                {{ user.username }}
-                                <span class="caret"></span>
-                                <span class="label">user</span>
-                            </a><div class="dropdown-menu"><ul role="menu">
+                    <li class=" dropdown dropdown-hover">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Challenge
+                            <span class="caret"></span>
+                            <span class="label">hot</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul role="menu">
+                                <li>
+                                    <a href="{% url 'challenge:index' %}">
+                                        Défier !
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'challenge:challenge_list' %}">
+                                        Liste
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="search-toggle" href="search.html">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class=" dropdown dropdown-hover">
+                        <a href="{% url 'user:profile' %}">
+                            {{ user.username }}
+                            <span class="caret"></span>
+                            <span class="label">user</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul role="menu">
                                 <li>
                                     <a href="{% url 'user:profile' %}">
                                         Profile
                                     </a>
                                 </li>
                                 <li>
-                                        <a href="{% url 'social:index' %}">
-                                            Social
-                                        </a>
-                                    </li>
-                                <li>
-                                    <a href="{% url 'user:logoutAction' %}">Se deconnecter <i class="fas fa-sign-out-alt"></i></a></p>  
+                                    <a href="{% url 'social:index' %}">
+                                        Social
+                                    </a>
                                 </li>
-                            </ul></div>
-                        </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle points" data-toggle="dropdown" role="button" aria-expanded="false">{{user.profile.points}} <img src="{{static}}/media/assets/images/diamond.png" alt="points"></a>
-                            
+                                <li>
+                                    <a href="{% url 'user:logoutAction' %}">Se deconnecter <i
+                                            class="fas fa-sign-out-alt"></i></a></p>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-                </ul>
-            </div>
-            {% else %}
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'user:login' %}" class="dropdown-toggle">
-                        Se connecter <i class="fa fa-user"></i>
-                    </a>
-                </li>
-            </ul>
-            {% endif %}
+                    <li>
+                        <a href="#" class="dropdown-toggle points" data-toggle="dropdown" role="button"
+                           aria-expanded="false">{{ user.profile.points }} <img
+                                src="{{ static }}/media/assets/images/diamond.png" alt="points"></a>
+
+                    </li>
+                    </ul>
+                    </div>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'user:login' %}" class="dropdown-toggle">
+                                Se connecter <i class="fa fa-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
         </li>
-    </ul>
-</div>
-</div>
+        </ul>
+    </div>
+    </div>
 </nav>
 <!-- /Navbar -->
 <div class="content-wrap block-content">
-        {% block content %}
-        {% endblock content %}
+    {% block content %}
+    {% endblock content %}
 </div>
 </body>
 <!-- Footer -->
 <footer class="youplay-footer youplay-footer-parallax">
-    <div class="wrapper">            
+    <div class="wrapper">
         <!-- Copyright -->
         <div class="copyright">
             <div class="container">
@@ -212,48 +231,48 @@
 <!-- /Search Block -->
 <!-- START: Scripts -->
 <!-- Object Fit Polyfill -->
-<script src="{{static}}/media/assets/vendor/object-fit-images/dist/ofi.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/object-fit-images/dist/ofi.min.js"></script>
 <!-- jQuery -->
-<script src="{{static}}/media/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/jquery/dist/jquery.min.js"></script>
 <!-- Hexagon Progress -->
-<script src="{{static}}/media/assets/vendor/HexagonProgress/jquery.hexagonprogress.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/HexagonProgress/jquery.hexagonprogress.min.js"></script>
 <!-- Bootstrap -->
-<script src="{{static}}/media/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Jarallax -->
-<script src="{{static}}/media/assets/vendor/jarallax/dist/jarallax.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/jarallax/dist/jarallax.min.js"></script>
 <!-- Flickity -->
-<script src="{{static}}/media/assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/flickity/dist/flickity.pkgd.min.js"></script>
 <!-- jQuery Countdown -->
-<script src="{{static}}/media/assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
 <!-- Moment.js -->
-<script src="{{static}}/media/assets/vendor/moment/min/moment.min.js"></script>
-<script src="{{static}}/media/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/moment/min/moment.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 <!-- Magnific Popup -->
-<script src="{{static}}/media/assets/vendor/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <!-- Revolution Slider -->
-<script src="{{static}}/media/assets/vendor/slider-revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="{{static}}/media/assets/vendor/slider-revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/slider-revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/slider-revolution/js/jquery.themepunch.revolution.min.js"></script>
 <!-- ImagesLoaded -->
-<script src="{{static}}/media/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <!-- Isotope -->
-<script src="{{static}}/media/assets/vendor/isotope-layout/dist/isotope.pkgd.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/isotope-layout/dist/isotope.pkgd.min.js"></script>
 <!-- Bootstrap Validator -->
-<script src="{{static}}/media/assets/vendor/bootstrap-validator/dist/validator.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/bootstrap-validator/dist/validator.min.js"></script>
 <!-- Bootstrap Sweetalert -->
-<script src="{{static}}/media/assets/vendor/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
 <!-- Social Likes -->
-<script src="{{static}}/media/assets/vendor/social-likes/dist/social-likes.min.js"></script>
+<script src="{{ static }}/media/assets/vendor/social-likes/dist/social-likes.min.js"></script>
 <!-- Youplay -->
-<script src="{{static}}/media/assets/js/youplay.min.js"></script>
-<script src="{{static}}/media/assets/js/youplay-init.js"></script>
+<script src="{{ static }}/media/assets/js/youplay.min.js"></script>
+<script src="{{ static }}/media/assets/js/youplay-init.js"></script>
 <script>
-    $(".countdown").each(function() {
+    $(".countdown").each(function () {
         var tz = $(this).attr('data-timezone');
         var end = $(this).attr('data-end');
         end = moment.tz(end, tz).toDate();
-        $(this).countdown(end, function(event) {
+        $(this).countdown(end, function (event) {
             $(this).text(
-            event.strftime('%D days %H:%M:%S')
+                event.strftime('%D days %H:%M:%S')
             );
         });
     });

@@ -90,7 +90,8 @@ def fight(request, challenge_id):
             challenge.player2.profile.defeat += 1
             challenge.player2.profile.save()
 
-            challenge.status = 'win'
+            challenge.status = 'lose'
+            challenge.save()
 
         elif game['lp1'] < game['lp2']:
             game['winner'] = challenge.player2.username
@@ -101,7 +102,8 @@ def fight(request, challenge_id):
             challenge.player1.profile.defeat += 1
             challenge.player1.profile.save()
 
-            challenge.status = 'lose'
+            challenge.status = 'win'
+            challenge.save()
 
         else:
             game['winner'] = 'nobody'
@@ -109,14 +111,12 @@ def fight(request, challenge_id):
             challenge.status = 'draw'
             challenge.save()
 
-        return HttpResponse(
-            'Turn: ' + str(x) +
-            ', result: ' + str(result) +
-            ', lp1: ' + str(game['lp1']) +
-            ', lp2: ' + str(game['lp2']) +
-            ', winner: ' + game['winner'] +
-            ', status: ' + challenge.status 
-        )
+        return render(request, 'challenge/result.html', {
+            'lp1': str(game['lp1']),
+            'lp2': str(game['lp2']),
+            'status': challenge.status,
+            'turns': str(x)
+        })
 
 def do_battle(card1, card2):
     if card1.atk > card2.atk:
