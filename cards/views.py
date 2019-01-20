@@ -28,10 +28,11 @@ def detail(request, pk):
             decks = Deck.objects.filter(owner=user)
             quantity = user_card.quantity
 
-            for deck in decks:
-                used_cards = Deck_cards.objects.get(deck=deck, card=card)
-                if used_cards:
-                    quantity -= used_cards.quantity
+            
+            #for deck in decks:
+            #    used_cards = Deck_cards.objects.get(deck=deck, card=card)
+            #    if used_cards:
+            #        quantity -= used_cards.quantity
 
             return render(request, 'cards/detail.html', {
                 'card': user_card.card,
