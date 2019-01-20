@@ -14,7 +14,7 @@
 <section class="youplay-banner banner-top youplay-banner-parallax small">
     
     <div class="image" data-speed="0.4">
-        <img src="assets/images/dark/game-diablo-iii-1400x656.jpg" alt="" class="jarallax-img">
+        <img src="{{ static }}/media/assets/images/wow1.jpg" alt="" class="jarallax-img">
     </div>
 
 
@@ -27,31 +27,13 @@
 <div class="info">
     <div>
         <div class="container youplay-user">
-            <a href="assets/images/dark/user-photo.jpg" class="angled-img image-popup">
-                <div class="img">
-                    <img src="assets/images/dark/user-avatar.jpg" alt="">
-                </div>
-                <i class="fa fa-search-plus icon"></i>
-            </a>
             <div class="user-data">
                 <h2>Enregistrer un nouveau compte</h2>
                 <div class="location"><i class="fa fa-map-marker"></i><h4>Créer ton propre deck et défie les autres joueurs !</h3></div>
             </div>
-        </div>
+<div class="row">
 
-    </div>
-</div>
-</section>
-<!-- /Banner -->
-
-    
-
-    
-<div class="container youplay-content">
-
-    <div class="row">
-
-        <div class="col-md-9">
+        <div class="col-md-6 col-md-3">
 
                 <form method="POST" action="{% url 'user:registerAction' %}">
                         {% csrf_token %}
@@ -77,9 +59,11 @@
                     </form>
 
         </div>
+</div>
+        </div>
 
     </div>
-
 </div>
-
+</section>
+<!-- /Banner -->
 {% endblock %}
