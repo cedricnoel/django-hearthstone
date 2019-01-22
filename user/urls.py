@@ -14,7 +14,7 @@ urlpatterns = [
         path('profile/', views.profile, name="profile"),
         path('profile/edit', views.profile_edit, name="profile_edit"),
         path('profile/editAction', views.profile_edit_action, name="profile_edit_action"),
-        path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+        path('password_reset/', auth_views.PasswordResetView.as_view(template_name='user/password_reset_form.html'), name='password_reset'),
         path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
         path('reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
         auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
