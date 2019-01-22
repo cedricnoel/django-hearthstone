@@ -112,7 +112,11 @@ def add_deck_cards(request):
 def remove_card(request):
     if request.method == 'POST':
         deck_card = Deck_cards.objects.get(pk=request.POST['deck_card'])
-        deck_card.quantity -= 1
-        deck_card.save()
+
+        if deck_card.quantity == 1 or deck_card.quantity <= 0:
+            deck_card.delete()
+        else:
+            deck_card.quantity -= 1
+            deck_card.save()
 
     return redirect('decks:detail', deck_id=request.POST['deck_id'])
