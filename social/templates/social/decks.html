@@ -37,9 +37,6 @@
                                     {% for card in deck.cards %}
                                             <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
                                             <a href="{% url 'cards:detail' card.card.id %}" class="angled-img">
-                                                <div class="img img-offset">
-                                                    <img src="{{ static }}{{ card.card.image.url }}" alt="">
-                                                </div>
                                                 <div class="angled-img">
                                                         <div class="img">
                                                             <img src="{{card.card.image.url}}" alt="">
@@ -83,9 +80,11 @@
             
                                     {% endfor %}
                                     {% else %}
-                                        <li>
-                                            <p>Aucun deck</p>
-                                        </li>
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-3">
+                                            <h4 class="text-center alert alert-warning">{{ social_user.username }} ne possède pas de deck.</h1>
+                                        </div>
+                                    </div>  
                                     {% endif %}
                                 </li>
                                 </ul>
