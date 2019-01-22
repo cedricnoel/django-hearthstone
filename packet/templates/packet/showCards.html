@@ -12,7 +12,11 @@
     {% endif %}
         {% if cards %}
             {% for card in cards %}
-            <div class="item col-lg-4 col-md-6 col-xs-12" data-filters="popular">
+            <div class="item col-lg-4 col-md-6 col-xs-12 reverse" data-filters="popular">
+                <div class="front">
+                    ?
+                </div>
+                   <div class="back">
                     <a href="{% url 'cards:detail' card.id %}" class="angled-img">
                         <div class="img img-offset">
                             <img src="{{static}}{{card.image.url}}" alt="">
@@ -42,9 +46,12 @@
                             </div>
                         </div>
                     </a>
+                   </div>
                 </div>
             {% endfor %}
         {% endif %}
 </div>
+
+<script src="{{ static }}/media/assets/js/custom.js"></script>
 
 {% endblock %}
