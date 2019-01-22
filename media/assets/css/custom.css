@@ -111,10 +111,6 @@
     transform: rotateY( 180deg );
   }
 
-  
-.packets .item.flipped .front{
-    display: none!important;
-}
 
 
 .packets .item.reverse .front{
