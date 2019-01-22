@@ -57,12 +57,22 @@
     margin: 0;
 }
 
+.packets .btn-group{
+    margin-bottom: 35px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .packets .angled-img .img.img-offset{
     text-align: center;
 }
 
 .packets .item{
     min-height: 345px;
+    margin-bottom: 10px;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
   -o-perspective: 800px;
