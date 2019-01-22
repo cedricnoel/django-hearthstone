@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'packet.apps.PacketConfig',
     'decks.apps.DecksConfig',
     'colorfield',
+    'forum.apps.ForumConfig',
+    'challenge.apps.ChallengeConfig',
+    'social.apps.SocialConfig',
 ]
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only

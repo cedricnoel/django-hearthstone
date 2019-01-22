@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+
+                <h1>Editer une discussion</h1>
+
+                <form action="{% url 'forum:update-subject' subject_id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.author.as_hidden }}
+                
+                    {{ form.title.label_tag }}
+                    <div class="youplay-input">                    
+                        {{ form.title }}
+                    </div>
+                    {{ form.title.errors }}
+                
+                    {{ form.subtitle.label_tag }}
+                    <div class="youplay-input">                                        
+                        {{ form.subtitle }}
+                    </div>
+                    {{ form.subtitle.errors }}
+                
+                    {{ form.content.label_tag }}
+                    <div class="youplay-input">                                        
+                        {{ form.content }}
+                    </div>
+                    {{ form.content.errors }}
+                    <p>
+                        <button class="btn btn-sm ml-0 mr-0" type="submit">Editer la discussion</button>
+                    </p>
+                </form>
+          
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

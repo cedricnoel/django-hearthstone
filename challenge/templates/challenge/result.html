@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+    <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+        <div class="image" data-speed="0.4">
+            <img src="{{ static }}/media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+        </div>
+        <div class="info">
+            <div>
+                <div class="container">
+                    <h1 class="h1">Les résultats</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container youplay-content">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Résultat du Challenge :</h2>
+                <h1>YOU {{ status|upper }} !</h1>
+                <hr>
+            </div>
+            <div class="col-md-12 text-center">
+                Challenge en {{ turns }} tours
+            </div>
+            <div class="col-md-6 text-center">
+                <p>Il vous reste : <strong>{{ lp2 }}</strong> points de vie</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p>Il reste : <strong>{{ lp1 }}</strong> points de vie à l'adversaire</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 text-right">
+                <a href="{% url 'hearthstone-index' %}" class="btn btn-sm btn-primary">Page d'accueil</a>
+            </div>
+            <div class="col-md-6 text-left">
+                <a href="{% url 'challenge:challenge_list' %}" class="btn btn-sm btn-danger">Page challenge</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
