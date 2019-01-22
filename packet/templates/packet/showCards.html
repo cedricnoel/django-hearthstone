@@ -44,6 +44,24 @@
                     </a>
                 </div>
             {% endfor %}
+        {% else %}
+        <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+            <div class="image" data-speed="0.4">
+                <img src="{{static}}/media/assets/images/wallpaper2.jpg" alt="" class="jarallax-img">
+            </div>
+        
+        <div class="info">
+            <div>
+                <div class="container text-center">
+                    
+                        <h4 class="alert alert-danger">Vous ne pouvez pas ouvrir de pack !</h4>
+                        <p>Vous n'avez pas assez de points !</p>
+                    
+                </div>
+            </div>
+        </div>
+        </section>
         {% endif %}
 </div>
 

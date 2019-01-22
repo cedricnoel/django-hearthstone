@@ -6,61 +6,70 @@
 
 <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
     
-        <div class="image" data-speed="0.4">
-            <img src="{{static}}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
-        </div>
+    <div class="image" data-speed="0.4">
+        <img src="{{static}}/media/assets/images/wallpaper3.jpg" alt="" class="jarallax-img">
+    </div>
     
     <div class="info">
         <div>
             <div class="container">
                 
-                    <h1 class="h1">Les battles de {{social_user.username}}</h1>
+                <h1 class="h1">Les battles de {{social_user.username}}</h1>
                 
             </div>
         </div>
     </div>
 </section>
 
+{% if challenging %}
+
 {% for challenge in challenging %}
-                    <a class="youplay-single-match" href="#">
-                            <div class="pull-left">
-                                <div class="angled-img">
-                                    <div class="img">
-                                        <img src="assets/images/dark/clan-navi.jpg" alt="NAVI">
-                                    </div>
-                                </div>
-                                <h5 class="text-center">{{ challenge.player1.username }}</h5>
-                            </div>
+<a class="youplay-single-match" href="#">
+    <div class="pull-left">
+        <div class="angled-img">
+            <div class="img">
+                <img src="assets/images/dark/clan-navi.jpg" alt="NAVI">
+            </div>
+        </div>
+        <h5 class="text-center">{{ challenge.player1.username }}</h5>
+    </div>
+    
+    <div class="pull-left ml-30">
+        <div class="angled-img">
+            <div class="img">
+                <img src="assets/images/dark/clan-ehome.jpg" alt="EHOME">
+            </div>
+        </div>
+        <h5 class="text-center">{{ challenge.player2.username }}</h5>
+    </div>
+    
+    <div class="pull-left ml-30">
+        {% if challenge.status == 'pending' %}
+        <h3 class="youplay-match-title">En attente</h3>
+        <div class="date">Votre adversaire n'a pas encore répondu au duel</div>
+        {% elif challenge.status == 'declined' %}
+        <h3 class="youplay-match-title">Décliné</h3>
+        <div class="date">Votre adversaire n'a pas souhaité vous affrontez</div>
+        {% elif challenge.status == 'win' %}
+        <h3 class="youplay-match-title">VICTOIRE</h3>
+        <div class="date">Et une victoire de plus !</div>
+        {% elif challenge.status == 'lose' %}
+        <h3 class="youplay-match-title">DEFAITE</h3>
+        <div class="date">Vous ferez mieux la prochaine fois !</div>
+        {% endif %}
+    </div>
+    
+    <div class="label youplay-match-count">{{challenge.status}}</div>
+    
+    <div class="clearfix"></div>
+</a>
+{% endfor %}
 
-                            <div class="pull-left ml-30">
-                                <div class="angled-img">
-                                    <div class="img">
-                                        <img src="assets/images/dark/clan-ehome.jpg" alt="EHOME">
-                                    </div>
-                                </div>
-                                <h5 class="text-center">{{ challenge.player2.username }}</h5>
-                            </div>
-
-                            <div class="pull-left ml-30">
-                                    {% if challenge.status == 'pending' %}
-                                    <h3 class="youplay-match-title">En attente</h3>
-                                    <div class="date">Votre adversaire n'a pas encore répondu au duel</div>
-                                    {% elif challenge.status == 'declined' %}
-                                    <h3 class="youplay-match-title">Décliné</h3>
-                                    <div class="date">Votre adversaire n'a pas souhaité vous affrontez</div>
-                                    {% elif challenge.status == 'win' %}
-                                    <h3 class="youplay-match-title">VICTOIRE</h3>
-                                    <div class="date">Et une victoire de plus !</div>
-                                    {% elif challenge.status == 'lose' %}
-                                    <h3 class="youplay-match-title">DEFAITE</h3>
-                                    <div class="date">Vous ferez mieux la prochaine fois !</div>
-                                    {% endif %}
-                            </div>
-
-                            <div class="label youplay-match-count">{{challenge.status}}</div>
-
-                            <div class="clearfix"></div>
-                        </a>
-                        {% endfor %}
-
-                        {% endblock %}
+{% else %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4 class="text-center alert alert-warning">{{ social_user.username }} n'a pas fait de duel.</h1>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
