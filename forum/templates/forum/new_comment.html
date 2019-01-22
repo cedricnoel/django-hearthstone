@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+
+                <ul class="youplay-forum mr-10">
+
+                        <li class="body">
+
+                <div>
+                        <div class="top">
+                            <a class="author h5 pull-left" href="#">{{subject.author.username}}</a>
+                            <div class="date pull-right"><i class="fa fa-calendar"></i> {{subject.pub_date}}</div>
+                        </div>
+
+                        <div class="avatar pull-left">
+                            <img src="assets/images/dark/avatar-user-1.png" alt="">
+                        </div>
+                        <div class="reply clearfix">
+                            <div class="text">
+                                    {{ subject.content }}
+                            </div>
+                        </div>
+                </div>
+
+                <h1>Nouveau commentaire</h1>
+
+                <form action="{% url 'forum:store-comment' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="subject" value="{{ subject.id }}">
+                    {% for field in form.visible_fields %}
+                <label>{{ field.label_tag }}</label>
+                {{ field.errors }}
+        <div class="youplay-input">
+                {{ field }}
+        </div>
+                {{ field.help_text }}
+                    {% endfor %}
+                    <p>
+                        <button class="btn btn-sm ml-0 mr-0" type="submit">Envoyer mon commentaire</button>
+                    </p>
+                </form>
+          
+        </div>
+    </li>
+</ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

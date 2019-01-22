@@ -1,0 +1,146 @@
+/* PLACE YOUR CUSTOM STYLES IN THIS FILE */
+
+.content-wrap.block-content{
+    padding-top: 80px;
+}
+
+.youplay-store.store-grid .isotope-list ul{
+    list-style: none;
+}
+
+.angled-img .img > img {
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.angled-img .bottom-info .row{
+    display: flex;
+    align-items: center;
+}
+
+.rating .badge{
+    position: relative;
+}
+
+.dropdown-toggle.points{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-toggle.points img{
+    height: 100%;
+    margin-left: 5px;
+}
+
+.angled-img .price{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.angled-img .price img{
+    height: 20px;
+    margin-left: 5px;
+}
+
+.rating{
+    -webkit-transform: skew(-7deg);
+    -ms-transform: skew(-7deg);
+    transform: skew(-7deg);
+}
+
+.packets{
+    padding: 15px 0px;
+    margin: 0;
+}
+
+.packets .angled-img .img.img-offset{
+    text-align: center;
+}
+
+.packets .angled-img .img > img{
+    width: 50%;
+    max-width: 245px;
+    height: 210px;  
+}
+
+.packets .angled-img .img {
+    background: transparent;
+}
+
+.packets .item.not-enought-points a::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: not-allowed;
+    z-index: 100;
+    background-color: rgba(113, 113, 113, 0.35);
+}
+
+.packets .item.not-enought-points .price{
+    color: red;
+}
+
+.my_cards li{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.single-card .description{
+    width: 80%;
+    margin: 20px auto 0 auto;
+}
+
+.single-card .badge{
+    position: relative;
+    opacity: 1;
+    -webkit-transform: skew(-7deg);
+    -ms-transform: skew(-7deg);
+    transform: skew(-7deg);
+}
+
+.angled-img .single-card .price img{
+    height: 40px;
+}
+
+.single-deck{
+    padding: 15px;
+}
+
+.single-deck .control{
+    position: absolute;
+    top: 24px;
+    right: 10px;
+}
+
+.single-deck .control a{
+    margin-right: 5px;
+}
+
+.single-deck .deck-name{
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-decoration: none;
+}
+
+.sell-card select{
+    max-width: 100px;
+}
+
+.sell-card{
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.single-card .alert-info{
+    width: 90%;
+}
+
+.btn-group-right{
+    float: right;
+}

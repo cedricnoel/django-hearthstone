@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+        <div class="image" data-speed="0.4">
+            <img src="{{static}}/media/assets/images/wallpaper5.png" alt="" class="jarallax-img">
+        </div>
+    
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                    <h1 class="h1">Social</h1>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container-fluid youplay-content">
+        <div class="row">
+            <div class="col-md-6">
+                    <h1>A follow</h1>
+                    <ul class="list-unstyled">
+                        {% if all_user %}
+                            {% for user in all_user %}
+                            <li>
+                               <div class="alert">
+                                    {{user.username}} 
+                                    <div class="btn-group-right">
+                                            <a href="{% url 'social:follow' user.id %}" class="btn btn-default btn-xs">Follow</a>
+                                    </div>
+                               </div>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>
+                                <p>Aucun users</p>
+                            </li>
+                        {% endif %}
+                    </ul>
+            </div>
+            <div class="col-md-6">
+                    {% if my_follow %}
+                    <h1>Mes follow</h1>
+               <ul class="list-unstyled">
+                    {% for follow in my_follow %}
+                    <li>
+                            <div class="alert alert-success">
+                                    {{follow.follow.username}}
+                                    <div class="btn-group-right">
+                                            <a href="{% url 'social:social_cards' follow.follow.id %}" class="btn btn-default btn-xs">Voir ses cartes</a>
+                                            <a href="{% url 'social:social_decks' follow.follow.id %}" class="btn btn-default btn-xs">Voir ses decks</a>
+                                            <a href="{% url 'social:social_battle' follow.follow.id %}" class="btn btn-default btn-xs">Voir ses battles</a>
+                                    </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+               </ul>
+               {% endif %}
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}

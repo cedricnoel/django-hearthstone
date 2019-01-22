@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+            <div class="image" data-speed="0.4">
+                <img src="{{ static }}/media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+            </div>
+            <div class="info">
+                <div>
+                    <div class="container">
+                        <h1 class="h1">{{ subject.title }}</h1>
+                        {% if subject.author.id == current_user.id %}
+                            <a href="{% url 'forum:edit-subject' subject.id %}">Editer</a>
+                            <a href="{% url 'forum:delete-subject' subject.id %}">Supprimer</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container youplay-content">
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- Forums List -->
+                    <ul class="youplay-forum mr-10">
+                        <li class="body">
+                            <div>
+                                <div class="top">
+                                    <a class="author h5 pull-left" href="#">Sujet de : {{ subject.author.username }}</a>
+                                    <div class="date pull-right"><i class="fa fa-calendar"></i> {{ subject.pub_date }}
+                                    </div>
+                                </div>
+                                <div class="avatar pull-left">
+                                    <img src="assets/images/dark/avatar-user-1.png" alt="">
+                                </div>
+                                <div class="reply clearfix">
+                                    <div class="text">
+                                        {{ subject.content }}
+                                    </div>
+                                    <a href="{% url 'forum:new-comment' subject.id %}"
+                                       class="pull-right btn btn-sm ml-0 mr-0">Répondre</a>
+                                </div>
+                            </div>
+                            {% for comment in subject.comments.all %}
+                                <div class="col-md-8 col-md-offset-4">
+                                    <div class="top">
+                                        <a class="author h5 pull-left" href="#">Commentaire de : {{ comment.author.username }}</a>
+                                        <div class="date pull-right"><i
+                                                class="fa fa-calendar"></i> {{ comment.pub_date }}</div>
+                                    </div>
+
+                                    <div class="avatar pull-left">
+                                        <img src="assets/images/dark/avatar-user-1.png" alt="">
+                                    </div>
+                                    <div class="reply clearfix">
+                                        <div class="text">
+                                            {{ comment.content }}
+                                        </div>
+                                        <a href="{% url 'forum:new-answer' comment.id %}"
+                                           class="pull-right btn btn-sm ml-0 mr-0">Répondre à ce commentaire</a>
+                                    </div>
+                                </div>
+                                {% for answer in comment.answers.all %}
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="top">
+                                            <a class="author h5 pull-right" href="#">Réponse de : {{ answer.author.username }}</a>
+                                            <div class="date pull-left"><i
+                                                    class="fa fa-calendar"></i> {{ answer.pub_date }}</div>
+                                        </div>
+
+                                        <div class="avatar pull-right">
+                                            <img src="assets/images/dark/avatar-user-1.png" alt="">
+                                        </div>
+                                        <div class="reply clearfix">
+                                            <div class="text pull-right" style="padding-right:30px;">
+                                                {{ answer.content }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

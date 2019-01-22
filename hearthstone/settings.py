@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'packet.apps.PacketConfig',
     'decks.apps.DecksConfig',
+    'colorfield',
+    'forum.apps.ForumConfig',
+    'challenge.apps.ChallengeConfig',
+    'social.apps.SocialConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'hearthstone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,6 +75,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'hearthstone.wsgi.application'
 

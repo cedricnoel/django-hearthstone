@@ -1,18 +1,98 @@
-{% if user.is_authenticated %}
-    <p>Welcome, <a href="{% url 'user:profile' %}">{{ user.username }}</a>. <a href="{% url 'user:logoutAction' %}">Logout</a></p>  
-{% else %}
-    <p>Welcome, new user. Please <a href="{% url 'user:login' %}">Login</a></p>
-{% endif %}
+{% extends 'base.html' %}
 
-<a href="{% url 'decks:index' %}">Voir mes Decks</a>
+{% load static %}
+{% static "" as baseUrl %}
 
-<h2>Liste des cartes</h2>
-{% if latest_cards %}
-    <ul>
-	    {% for card in latest_cards %}
-	        <li><a href="{% url 'cards:detail' card.id %}">{{ card.name }}</a></li>
-	    {% endfor %}
-    </ul>
-{% else %}
-    <p>No cards are available.</p>
-{% endif %}
+{% block content %}
+
+<section class="youplay-banner banner-top youplay-banner-parallax xsmall">
+    
+        <div class="image" data-speed="0.4">
+            <img src="{{static}}/media/assets/images/wallpaper1.jpg" alt="" class="jarallax-img">
+        </div>
+    
+    <div class="info">
+        <div>
+            <div class="container">
+                
+                    <h1 class="h1">Liste des cartes</h1>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="content-wrap no-banner">
+    <div class="container youplay-store store-grid mt-0">
+        
+        <!-- Games List -->
+        <div class="col-md-12 isotope">
+            <!-- Sort Categories -->
+            <ul class="pagination isotope-options">
+                <li data-filter="TOUS" class="active"><span>TOUS</span></li>
+                {% for type in types %}
+                <li data-filter="{{type.name}}"><span>{{type.name}}</span></li>
+            {% endfor %}
+            </ul>
+            <!-- /Sort Categories -->
+            
+            <div class="isotope-list row vertical-gutter">
+                
+                {% if latest_cards %}
+                <ul>
+                    {% for card in latest_cards %}
+                    <li>
+                        <!-- Single Product Block -->
+                        <div class="item col-lg-3 col-md-4 col-xs-12" data-filters="TOUS, {% for type in card.type.all %}{{type.name}} , {% endfor %}">
+                            <a href="{% url 'cards:detail' card.id %}" class="angled-img">
+                                <div class="img img-offset">
+                                    <img src="{{static}}{{card.image.url}}" alt="">
+                                </div>
+                                <div class="bottom-info">
+                                    <h4>{{ card.name }}</h4>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            
+                                            <div class="rating">
+                                                {% for type in card.type.all %}
+                                                <span class="badge show" style="background-color: {{type.color}}">{{ type }}</span>
+                                                {% endfor %}
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Attack">
+                                                {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <div class="price" data-toggle="tooltip" data-placement="top" title="Life">
+                                                    {{card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- /Single Product Block -->
+                        
+                        
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No cards are available.</p>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+

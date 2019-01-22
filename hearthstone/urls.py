@@ -20,10 +20,13 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-	path('', cardViews.IndexView.as_view(), name='hearthstone-index'),
+	path('', cardViews.index, name='hearthstone-index'),
 	path('cards/', include('cards.urls')),
     path('decks/', include('decks.urls')),
+    path('forum/', include('forum.urls')),
     path('admin/', admin.site.urls),
     path('packet/', include('packet.urls')),
-    path('', include('user.urls', namespace="User"))
+    path('', include('user.urls', namespace="User")),
+    path('challenge/', include('challenge.urls')),
+    path('social/', include('social.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

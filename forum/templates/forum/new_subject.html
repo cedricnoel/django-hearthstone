@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    
+<div class="container youplay-content">
+
+    <div class="row">
+
+        <div class="col-md-9">
+            
+                <h1>Nouvelle discussion</h1>
+
+                <form action="{% url 'forum:store-subject' %}" method="post">
+                    {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                        <label>{{ field.label_tag }}</label>
+                        {{ field.errors }}
+        <div class="youplay-input">
+                        {{ field }}
+                        </div>
+                        {{ field.help_text }}
+                    {% endfor %}
+                    <p>
+                        <button class="btn btn-sm ml-0 mr-0" type="submit">Enregistrer</button>
+                    </p>
+                </form>
+          
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

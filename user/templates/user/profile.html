@@ -1,15 +1,75 @@
-{% if user.is_authenticated %}
-    <p>
-        <label>Username : </label>
-        {{ user.username }}
-    </p>
-    <p>
-        <label>email : </label>
-        {{ user.email }}
-    </p>
-    <a href="{% url 'user:profile_edit' %}">Edit profile</a>
+{% extends 'base.html' %}
 
-    <p>
-        Points : {{user.profile.points}}
-    </p>
+{% block content %}
+
+{% if user.is_authenticated %}
+<!--
+    Banner
+
+    Additional classes:
+        .small
+        .xsmall
+        .big
+        .full
+-->
+<section class="youplay-banner banner-top youplay-banner-parallax small">
+    
+    <div class="image" data-speed="0.4">
+        <img src="{{static}}/media/assets/images/lol.jpg" alt="" class="jarallax-img">
+    </div>
+
+
+<div class="youplay-user-navigation">
+    <div class="container">
+        <ul>
+            <li><a href="user-activity.html">Nombre de Cartes débloqués <span class="badge">
+                {% if user.profile.card_count %}
+                {{ user.profile.card_count }}
+                {% else %}
+                    0
+                {% endif %}
+            </span></a></li>
+            <li><a href="user-messages.html">Nombre de Victoires <span class="badge">
+                {% if user.profile.victory %}
+                {{ user.profile.victory }}
+                {% else %}
+                    0
+                {% endif %}
+            </span></a></li>
+            <li><a href="user-messages.html">Nombre de Défaites <span class="badge">
+                    {% if user.profile.defeat %}
+                    {{ user.profile.defeat }}
+                    {% else %}
+                        0
+                    {% endif %}
+            </span></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="info">
+    <div>
+        <div class="container youplay-user">
+            <div class="user-data">
+                <h2>{{ user.username }}</h2>
+                <div class="location"><i class="fa fa-map-marker"></i>{{ user.email }}</div>
+                <div class="activity">
+                    <div>
+                        <div class="num">{{ user.profile.points }}</div>
+                        <div class="title">Points</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-20">
+            <a href="{% url 'user:profile_edit' %}" class="btn btn-sm btn-default ml-0">Modifier mon profil</a>
+        </div>
+    </div>
+</div>
+</section>
+<!-- /Banner -->
+
 {% endif %}
+
+{% endblock %}

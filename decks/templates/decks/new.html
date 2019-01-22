@@ -1,8 +1,31 @@
-<h1>Add new Deck</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+{% block content %}
 
-<form action="{% url 'decks:store' %}" method="POST">
-    {% csrf_token %}
-    {{ form.name }}
-    {{ form.items }}
-    <button type="submit">Save</button>
-</form>
+<div class="container youplay-content">
+
+        <div class="row">
+    
+            <div class="col-md-9">
+    
+                    <h1>Taper le nom de votre nouveau Deck</h1>
+
+                    <form action="{% url 'decks:store' %}" method="POST">
+                        {% csrf_token %}
+                <div class="youplay-input">
+                        {{ form.name }}
+                </div>
+                <div class="youplay-input">
+                        {{ form.items }}
+                </div>
+                        <button class="btn btn-default db" type="submit">Ajouter des cartes à mon deck</button>
+                    </form>
+
+            </div>
+    
+        </div>
+    
+    </div>
+
+{% endblock %}
