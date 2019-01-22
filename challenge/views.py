@@ -84,6 +84,12 @@ def fight(request, challenge_id):
         if game['lp1'] > game['lp2']:
             game['winner'] = challenge.player1.username
 
+            challenge.player1.profile.points += game['lp1']
+            challenge.player1.profile.save()
+
+            challenge.player2.profile.points += 10
+            challenge.player2.profile.save()
+
             challenge.player1.profile.victory += 1
             challenge.player1.profile.save()
 
@@ -96,6 +102,12 @@ def fight(request, challenge_id):
         elif game['lp1'] < game['lp2']:
             game['winner'] = challenge.player2.username
 
+            challenge.player1.profile.points += 10
+            challenge.player1.profile.save()
+
+            challenge.player2.profile.points += game['lp2']
+            challenge.player2.profile.save()
+
             challenge.player2.profile.victory += 1
             challenge.player2.profile.save()
 
@@ -107,6 +119,12 @@ def fight(request, challenge_id):
 
         else:
             game['winner'] = 'nobody'
+
+            challenge.player1.profile.points += 10
+            challenge.player1.profile.save()
+
+            challenge.player2.profile.points += 10
+            challenge.player2.profile.save()
 
             challenge.status = 'draw'
             challenge.save()
