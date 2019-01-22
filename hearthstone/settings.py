@@ -47,6 +47,14 @@ INSTALLED_APPS = [
     'social.apps.SocialConfig',
 ]
 
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'Decker-app'
+EMAIL_HOST_PASSWORD = '7GH7jVJVASMB4w3'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'TestSite Team <noreply@example.com>'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

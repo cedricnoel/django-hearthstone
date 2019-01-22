@@ -9,6 +9,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # -------- GET TEMPLATE --------
+from forum.models import Action
+from social.models import social
+
+
 def login(request):
     if request.user.is_authenticated:
         # Change later for homepage
@@ -19,12 +23,20 @@ def login(request):
 def register(request):
     return render(request, 'user/register.html')
 
-def password_reset(request):
-    return render(request, 'user/password.html')
 
 @login_required
 def profile(request):
-    return render(request, "user/profile.html")
+    socials = social.objects.filter(user=request.user)
+
+    result = []
+    for follow in socials:
+        actions = Action.objects.filter(author=follow.follow)
+        for action in actions:
+            result.append(action.content)
+
+    return render(request, "user/profile.html", {
+        'actions': result
+    })
 
 @login_required
 def profile_edit(request):

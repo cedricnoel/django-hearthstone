@@ -50,13 +50,26 @@
 <div class="info">
     <div>
         <div class="container youplay-user">
-            <div class="user-data">
-                <h2>{{ user.username }}</h2>
-                <div class="location"><i class="fa fa-map-marker"></i>{{ user.email }}</div>
-                <div class="activity">
-                    <div>
-                        <div class="num">{{ user.profile.points }}</div>
-                        <div class="title">Points</div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="user-data">
+                        <h2>{{ user.username }}</h2>
+                        <div class="location"><i class="fa fa-map-marker"></i>{{ user.email }}</div>
+                        <div class="activity">
+                            <div>
+                                <div class="num">{{ user.profile.points }}</div>
+                                <div class="title">Points</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="user-data">
+                        <ul>
+                            {% for action in actions %}
+                                <li>{{ action }}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

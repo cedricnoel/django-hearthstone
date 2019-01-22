@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('packet/', include('packet.urls')),
     path('', include('user.urls', namespace="User")),
+    path(r'^', include('django.contrib.auth.urls')),
     path('challenge/', include('challenge.urls')),
     path('social/', include('social.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

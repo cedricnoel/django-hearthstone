@@ -26,16 +26,16 @@
             {% csrf_token %}
     
             <div class="youplay-input">
-                <input type="text" name="username" placeholder="Login">
+                <input type="text" name="username" placeholder="Login" required>
             </div>
             <div class="youplay-input">
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-default db">Login</button>
+            <a href="{% url 'user:password_reset' %}">Reset password</a>
         </form>
            </div>
         </div>
-
     </div>
 </div>
 </section>
