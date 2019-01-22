@@ -2,58 +2,58 @@
 {% load static %}
 {% static "" as baseUrl %}
 {% block content %}
-<div class="row angled-img">
-    <div class="col-lg-6 col-xs-12">
-            <img src="{{card.image.url}}" alt="">
-    </div>
-    <div class="col-lg-6 col-xs-12 single-card">
-            <h1>{{ card.name }} 
+    <div class="row angled-img">
+        <div class="col-lg-6 col-xs-12">
+            <img src="{{ card.image.url }}" alt="">
+        </div>
+        <div class="col-lg-6 col-xs-12 single-card">
+            <h1>{{ card.name }}
                 {% for type in card.type.all %}
-                    <span class="badge" style="background-color: {{type.color}}">{{ type }}</span>
-                {% endfor %}            
+                    <span class="badge" style="background-color: {{ type.color }}">{{ type }}</span>
+                {% endfor %}
             </h1>
             <div>
-                    {% if Message %}
+                {% if Message %}
                     <div class="alert alert-info" role="alert">
-                            {{Message}}
-                          </div>
-                    {% endif %}
+                        {{ Message }}
+                    </div>
+                {% endif %}
 
-                    {% if user.profile.card_count > 10 %}
+                {% if user.profile.card_count > 10 and quantity > 0 %}
                     <p>
-                            <small>En vendant vos cartes, une partie de diamant vous seront redonnée</small>
-                        </p>
+                        <small>En vendant vos cartes, une partie de diamant vous seront redonnée</small>
+                    </p>
                     <form class="sell-card" action="{% url 'cards:cards_sell' card.id %}" method="POST">
-                                {% csrf_token %}
-                                <select class="form-control" name="quantity" id="quantity"  data-toggle="tooltip" data-placement="left" title="Quantité de carte à vendre">
-                                        <option value="0" selected>0</option>
-                                            {% for i in "x"|ljust:quantity %}
-                                            <option value=" {{ forloop.counter }}"> {{ forloop.counter }}</option>     
-                                        {% endfor %}
-                                </select>
-                                <button type="submit" class="btn btn-sm btn-default">VENDRE</button>
-                                <br>
+                        {% csrf_token %}
+                        <select class="form-control" name="quantity" id="quantity" data-toggle="tooltip"
+                                data-placement="left" title="Quantité de carte à vendre">
+                            <option value="0" selected>0</option>
+                            {% for i in "x"|ljust:quantity %}
+                                <option value=" {{ forloop.counter }}"> {{ forloop.counter }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-default">VENDRE</button>
+                        <br>
                     </form>
-                    {% endif %}
-                      
+                {% endif %}
             </div>
-                <div class="row">
-                    <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Attack">
-                        {{card.atk}} <img src="{{static}}/media/assets/images/atk.png" alt="attack">
-                    </div>
-                    <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Life">
-                            {{card.life}} <img src="{{static}}/media/assets/images/life.png" alt="attack">
-                    </div>
-                    <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Cost">
-                            {{ card.cost }} <img src="{{static}}/media/assets/images/diamond.png" alt="cost">
-                    </div>
+            <div class="row">
+                <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Attack">
+                    {{ card.atk }} <img src="{{ static }}/media/assets/images/atk.png" alt="attack">
                 </div>
-                <div class="row text-center description">
-                        <hr>
-                    <p>Description :</p>
-                    <p>{{ card.desc }}</p>
-                   </div>
-          </div>
+                <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Life">
+                    {{ card.life }} <img src="{{ static }}/media/assets/images/life.png" alt="attack">
+                </div>
+                <div class="col-lg-4 price" data-toggle="tooltip" data-placement="top" title="Cost">
+                    {{ card.cost }} <img src="{{ static }}/media/assets/images/diamond.png" alt="cost">
+                </div>
+            </div>
+            <div class="row text-center description">
+                <hr>
+                <p>Description :</p>
+                <p>{{ card.desc }}</p>
+            </div>
+        </div>
     </div>
 
 
